@@ -39,10 +39,16 @@ export const Navbar = () => {
   ];
 
   const shopDropdownItems = [
-    { name: "Single Canvas Prints", href: "/products?type=single" },
-    { name: "Framed Prints", href: "/products?type=framed" },
-    { name: "Multi-Panel Sets", href: "/products?type=multi-panel" },
-    { name: "Collage Prints", href: "/products?type=collage" },
+    { name: "Canvas Prints", href: "/products?type=canvas" },
+    { name: "Collages Canvas", href: "/products?type=collages" },
+    { name: "Metal Prints", href: "/products?type=metal" },
+    { name: "Photo Pillows", href: "/products?type=pillows" },
+    { name: "Photo Blankets", href: "/products?type=blankets" },
+    { name: "Pet Portraits", href: "/products?type=pet-portraits" },
+    { name: "Print Bundles", href: "/products?type=bundles" },
+    { name: "Word Art", href: "/products?type=word-art" },
+    { name: "Kid Art", href: "/products?type=kid-art" },
+    { name: "Gift Cards", href: "/products?type=gift-cards" },
   ];
 
   const mobileMenuItems = [
