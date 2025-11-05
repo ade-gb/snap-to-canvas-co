@@ -2,7 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Mail, MessageCircle, Phone, HelpCircle, Package, CreditCard, Ruler, Shield } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Mail, MessageCircle, Phone, HelpCircle, Package, CreditCard, Ruler, Shield, Video, Lightbulb, Users, BookOpen } from "lucide-react";
 
 const Help = () => {
   const contactMethods = [
@@ -227,6 +228,166 @@ const Help = () => {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Video Tutorials */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Video Tutorials</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: "How to Upload Your Photo", duration: "2:30", thumbnail: "/placeholder.svg" },
+              { title: "Choosing the Perfect Size", duration: "3:15", thumbnail: "/placeholder.svg" },
+              { title: "Design Tips for Best Results", duration: "4:20", thumbnail: "/placeholder.svg" }
+            ].map((video, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full h-48 object-cover rounded-t-lg"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-t-lg">
+                      <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
+                        <Video className="w-8 h-8 text-primary-foreground" />
+                      </div>
+                    </div>
+                    <Badge className="absolute top-3 right-3">{video.duration}</Badge>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold">{video.title}</h3>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Getting Started Guide */}
+        <Card className="mb-12">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              <CardTitle>Getting Started Guide</CardTitle>
+            </div>
+            <CardDescription>Follow these simple steps to create your perfect canvas</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { step: 1, title: "Upload Your Photo", desc: "Choose a high-quality image from your device" },
+                { step: 2, title: "Select Size & Frame", desc: "Pick the perfect dimensions and frame style" },
+                { step: 3, title: "Preview & Adjust", desc: "See exactly how your canvas will look" },
+                { step: 4, title: "Order & Enjoy", desc: "Fast production and shipping to your door" }
+              ].map((item) => (
+                <div key={item.step} className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center mx-auto mb-4">
+                    {item.step}
+                  </div>
+                  <h3 className="font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Design Tips */}
+        <div className="mb-12">
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <Lightbulb className="w-6 h-6 text-primary" />
+            <h2 className="text-3xl font-bold text-center">Design Tips & Best Practices</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Photo Quality Tips</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Use high-resolution images</p>
+                      <p className="text-sm text-muted-foreground">At least 2000×2500 pixels for best quality</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Avoid overly compressed photos</p>
+                      <p className="text-sm text-muted-foreground">Original files work better than social media downloads</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Check lighting and focus</p>
+                      <p className="text-sm text-muted-foreground">Well-lit, in-focus photos print beautifully</p>
+                    </div>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Composition Guidelines</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Consider the canvas ratio</p>
+                      <p className="text-sm text-muted-foreground">Match your photo orientation to canvas size</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Leave space around edges</p>
+                      <p className="text-sm text-muted-foreground">Important elements shouldn't be too close to borders</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Test different orientations</p>
+                      <p className="text-sm text-muted-foreground">Portrait vs landscape can change the entire look</p>
+                    </div>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Community Gallery */}
+        <Card className="mb-12 bg-muted border-0">
+          <CardContent className="p-8">
+            <div className="text-center mb-8">
+              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h2 className="text-3xl font-bold mb-3">Customer Gallery</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Get inspired by beautiful canvas prints created by our customers
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <div key={i} className="aspect-square bg-card rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                  <img
+                    src="/placeholder.svg"
+                    alt={`Customer canvas ${i}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Button size="lg">View Full Gallery</Button>
             </div>
           </CardContent>
         </Card>

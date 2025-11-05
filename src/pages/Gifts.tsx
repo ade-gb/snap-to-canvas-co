@@ -2,8 +2,9 @@ import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
-import { Heart, Gift, Calendar, Sparkles, Baby, Home } from "lucide-react";
+import { Heart, Gift, Calendar, Sparkles, Baby, Home, DollarSign, Truck, Star, Package } from "lucide-react";
 
 const Gifts = () => {
   const occasions = [
@@ -68,6 +69,74 @@ const Gifts = () => {
     }
   ];
 
+  const priceRanges = [
+    {
+      range: "Under $50",
+      items: ["8×10 Single Canvas", "11×14 Gallery Wrap", "Digital Gift Card"],
+      popular: "Pet Portrait 8×10"
+    },
+    {
+      range: "$50 - $100",
+      items: ["16×20 Framed Print", "Multi-Photo Collage", "2-Piece Canvas Set"],
+      popular: "Family Portrait 16×20"
+    },
+    {
+      range: "$100 - $200",
+      items: ["24×36 Statement Piece", "3-Panel Wall Art", "Premium Framed Collection"],
+      popular: "Wedding Canvas Set"
+    },
+    {
+      range: "$200+",
+      items: ["Large Format Gallery", "5-Panel Panorama", "Custom Size Premium"],
+      popular: "Luxury Multi-Panel Set"
+    }
+  ];
+
+  const customerStories = [
+    {
+      name: "Jessica & Mark",
+      occasion: "Anniversary Gift",
+      image: "/placeholder.svg",
+      quote: "Our wedding photo on canvas is stunning! Best anniversary gift ever.",
+      rating: 5
+    },
+    {
+      name: "David Thompson",
+      occasion: "Father's Day",
+      image: "/placeholder.svg",
+      quote: "My dad cried when he saw the family portrait canvas. Priceless moment.",
+      rating: 5
+    },
+    {
+      name: "Amanda Lee",
+      occasion: "Housewarming",
+      image: "/placeholder.svg",
+      quote: "Perfect housewarming gift! My sister loved the custom size and quality.",
+      rating: 5
+    }
+  ];
+
+  const giftServices = [
+    {
+      icon: Gift,
+      title: "Gift Wrapping",
+      description: "Elegant premium wrapping included free",
+      price: "Free"
+    },
+    {
+      icon: Truck,
+      title: "Express Delivery",
+      description: "Guaranteed delivery for special occasions",
+      price: "$24.99"
+    },
+    {
+      icon: Package,
+      title: "Gift Box Packaging",
+      description: "Luxury presentation box with ribbon",
+      price: "$14.99"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-subtle">
       <Navbar />
@@ -107,6 +176,9 @@ const Gifts = () => {
                 <div className="text-sm mb-2">Gift Card Value</div>
                 <div className="text-4xl font-bold mb-4">$25 - $500</div>
                 <div className="text-sm opacity-90">Delivered instantly via email</div>
+                <div className="mt-4 pt-4 border-t border-white/20">
+                  <p className="text-xs">No expiration • Works on all products</p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -142,6 +214,60 @@ const Gifts = () => {
           </div>
         </div>
 
+        {/* Shop by Price */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Shop by Budget</h2>
+          <Tabs defaultValue="under50" className="w-full">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
+              <TabsTrigger value="under50">Under $50</TabsTrigger>
+              <TabsTrigger value="50-100">$50 - $100</TabsTrigger>
+              <TabsTrigger value="100-200">$100 - $200</TabsTrigger>
+              <TabsTrigger value="200plus">$200+</TabsTrigger>
+            </TabsList>
+            {priceRanges.map((range, index) => (
+              <TabsContent key={index} value={index === 0 ? "under50" : index === 1 ? "50-100" : index === 2 ? "100-200" : "200plus"}>
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle>{range.range}</CardTitle>
+                      <Badge variant="secondary">
+                        <DollarSign className="w-3 h-3 mr-1" />
+                        Best Value
+                      </Badge>
+                    </div>
+                    <CardDescription>Popular gift options in this price range</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold mb-3">Available Options:</h4>
+                        <ul className="space-y-2">
+                          {range.items.map((item, i) => (
+                            <li key={i} className="flex items-center gap-2 text-muted-foreground">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="bg-primary-light rounded-lg p-6">
+                        <Badge className="mb-3">Most Popular</Badge>
+                        <h4 className="font-semibold text-lg mb-2">{range.popular}</h4>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          Perfect size and quality for gifting
+                        </p>
+                        <Link to="/products">
+                          <Button className="w-full">View Options</Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </div>
+
         {/* Popular Gift Ideas */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Popular Gift Ideas</h2>
@@ -166,6 +292,62 @@ const Gifts = () => {
                     <Button>Create Now</Button>
                   </Link>
                 </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Gift Services */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Gift Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {giftServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card key={index} className="text-center">
+                  <CardHeader>
+                    <div className="flex justify-center mb-4">
+                      <div className="w-14 h-14 rounded-full bg-primary-light flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-primary" />
+                      </div>
+                    </div>
+                    <CardTitle className="text-lg">{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-primary">{service.price}</div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Customer Stories */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Gift Stories from Our Customers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {customerStories.map((story, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <img
+                    src={story.image}
+                    alt={story.name}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex items-center gap-1 mb-2">
+                    {[...Array(story.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <CardTitle className="text-lg">{story.name}</CardTitle>
+                  <CardDescription>{story.occasion}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground italic">
+                    "{story.quote}"
+                  </p>
+                </CardContent>
               </Card>
             ))}
           </div>

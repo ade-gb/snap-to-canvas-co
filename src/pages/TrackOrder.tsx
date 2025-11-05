@@ -4,8 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Package, Truck, CheckCircle, Clock, MapPin } from "lucide-react";
+import { Package, Truck, CheckCircle, Clock, MapPin, Mail, Phone, MessageCircle, Calendar, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const TrackOrder = () => {
   const [orderNumber, setOrderNumber] = useState("");
@@ -208,6 +209,161 @@ const TrackOrder = () => {
           </div>
         )}
 
+        {/* Additional Features when tracking is active */}
+        {tracking && (
+          <>
+            {/* Delivery Instructions */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-primary" />
+                  Delivery Instructions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Tabs defaultValue="instructions">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="instructions">Special Instructions</TabsTrigger>
+                    <TabsTrigger value="preferences">Delivery Preferences</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="instructions" className="space-y-4">
+                    <div className="bg-muted p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground">
+                        Leave package at front door. Ring doorbell upon delivery.
+                      </p>
+                    </div>
+                    <Button variant="outline" className="w-full">
+                      Update Instructions
+                    </Button>
+                  </TabsContent>
+                  <TabsContent value="preferences" className="space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                        <span className="text-sm">Signature Required</span>
+                        <Badge variant="secondary">No</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                        <span className="text-sm">Safe Place Delivery</span>
+                        <Badge variant="secondary">Front Porch</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                        <span className="text-sm">Alternate Delivery Date</span>
+                        <Badge variant="outline">Not Set</Badge>
+                      </div>
+                    </div>
+                    <Button variant="outline" className="w-full">
+                      Update Preferences
+                    </Button>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
+
+            {/* Expected Delivery Map Section */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  Delivery Location
+                </CardTitle>
+                <CardDescription>Your package will be delivered to</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-lg p-6 mb-4">
+                  <div className="text-center text-muted-foreground">
+                    <MapPin className="w-16 h-16 mx-auto mb-3 text-primary" />
+                    <p className="font-medium text-foreground mb-1">John Doe</p>
+                    <p className="text-sm">123 Main Street, Apt 4B</p>
+                    <p className="text-sm">New York, NY 10001</p>
+                  </div>
+                </div>
+                <Button variant="outline" className="w-full">
+                  Change Delivery Address
+                </Button>
+              </CardContent>
+            </Card>
+          </>
+        )}
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <Mail className="w-10 h-10 text-primary mx-auto mb-3" />
+              <h3 className="font-semibold mb-1">Email Updates</h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Get tracking updates via email
+              </p>
+              <Button variant="outline" size="sm" className="w-full">
+                Subscribe
+              </Button>
+            </CardContent>
+          </Card>
+          
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <Phone className="w-10 h-10 text-primary mx-auto mb-3" />
+              <h3 className="font-semibold mb-1">Call Support</h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Speak with our team
+              </p>
+              <Button variant="outline" size="sm" className="w-full">
+                1-800-CANVAS
+              </Button>
+            </CardContent>
+          </Card>
+          
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <CardContent className="p-6 text-center">
+              <MessageCircle className="w-10 h-10 text-primary mx-auto mb-3" />
+              <h3 className="font-semibold mb-1">Live Chat</h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Chat with us now
+              </p>
+              <Button variant="outline" size="sm" className="w-full">
+                Start Chat
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Order History Section (when not tracking) */}
+        {!tracking && (
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
+                Recent Orders
+              </CardTitle>
+              <CardDescription>
+                Your recently placed orders
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {[1, 2, 3].map((order) => (
+                  <div key={order} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted transition-colors cursor-pointer">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center">
+                        <Package className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold">Order #{12340 + order}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Placed on Dec {15 + order}, 2025
+                        </p>
+                      </div>
+                    </div>
+                    <Badge variant={order === 1 ? "secondary" : "outline"}>
+                      {order === 1 ? "In Transit" : "Delivered"}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Help Section */}
         <Card className="mt-8">
           <CardContent className="pt-6">
@@ -216,7 +372,10 @@ const TrackOrder = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 If you have questions about your order, our support team is here to help
               </p>
-              <Button variant="outline">Contact Support</Button>
+              <div className="flex gap-3 justify-center">
+                <Button variant="outline">Contact Support</Button>
+                <Button>View All Orders</Button>
+              </div>
             </div>
           </CardContent>
         </Card>
