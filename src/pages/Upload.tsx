@@ -1,13 +1,49 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Upload as UploadIcon, Image as ImageIcon } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  Upload as UploadIcon, 
+  Image as ImageIcon, 
+  ZoomIn, 
+  ZoomOut,
+  RotateCw,
+  Contrast,
+  Sun,
+  Sparkles
+} from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import canvasMockup from "@/assets/canvas-mockup.jpg";
 
 const Upload = () => {
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
   const [dragActive, setDragActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  
+  // Editor state
+  const [zoom, setZoom] = useState(100);
+  const [rotation, setRotation] = useState(0);
+  const [brightness, setBrightness] = useState(100);
+  const [contrast, setContrast] = useState(100);
+  const [saturation, setSaturation] = useState(100);
+  
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
+  // Redirect to auth if not logged in
+  useEffect(() => {
+    if (!loading && !user) {
+      toast.error("Please log in to upload photos");
+      navigate("/auth");
+    }
+  }, [user, loading, navigate]);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -36,18 +72,105 @@ const Upload = () => {
     }
   };
 
-  const handleFile = (file: File) => {
-    if (file.type.startsWith("image/")) {
+  const handleFile = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Image must be smaller than 10MB");
+      return;
+    }
+
+    setUploading(true);
+    
+    try {
+      // Upload to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user?.id}/${Date.now()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('photos')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data } = supabase.storage
+        .from('photos')
+        .getPublicUrl(fileName);
+
+      // Load image for preview
       const reader = new FileReader();
       reader.onload = (e) => {
         setUploadedImage(e.target?.result as string);
         toast.success("Image uploaded successfully!");
       };
       reader.readAsDataURL(file);
-    } else {
-      toast.error("Please upload an image file");
+    } catch (error: any) {
+      console.error("Upload error:", error);
+      toast.error("Failed to upload image");
+    } finally {
+      setUploading(false);
     }
   };
+
+  // Draw canvas preview with filters
+  useEffect(() => {
+    if (!uploadedImage || !canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const img = new Image();
+    img.onload = () => {
+      imageRef.current = img;
+      
+      // Set canvas size
+      canvas.width = 600;
+      canvas.height = 400;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Apply transformations
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((rotation * Math.PI) / 180);
+      
+      const scale = zoom / 100;
+      const imgWidth = img.width * scale;
+      const imgHeight = img.height * scale;
+      
+      // Apply filters
+      ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%)`;
+      
+      ctx.drawImage(
+        img,
+        -imgWidth / 2,
+        -imgHeight / 2,
+        imgWidth,
+        imgHeight
+      );
+      
+      ctx.restore();
+    };
+    img.src = uploadedImage;
+  }, [uploadedImage, zoom, rotation, brightness, contrast, saturation]);
+
+  const resetFilters = () => {
+    setZoom(100);
+    setRotation(0);
+    setBrightness(100);
+    setContrast(100);
+    setSaturation(100);
+  };
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -80,6 +203,7 @@ const Upload = () => {
                   accept="image/*"
                   onChange={handleChange}
                   className="hidden"
+                  disabled={uploading}
                 />
                 <label htmlFor="file-upload" className="cursor-pointer">
                   <div className="w-20 h-20 mx-auto mb-4 bg-primary-light rounded-full flex items-center justify-center">
@@ -87,8 +211,8 @@ const Upload = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Drop your image here</h3>
                   <p className="text-muted-foreground mb-4">or click to browse</p>
-                  <Button variant="hero">
-                    Select Image
+                  <Button variant="hero" disabled={uploading}>
+                    {uploading ? "Uploading..." : "Select Image"}
                   </Button>
                 </label>
                 <p className="text-sm text-muted-foreground mt-6">
@@ -97,30 +221,136 @@ const Upload = () => {
               </div>
             ) : (
               <div className="space-y-6">
-                <div className="relative aspect-video bg-secondary rounded-lg overflow-hidden">
-                  <img 
-                    src={uploadedImage} 
-                    alt="Uploaded preview"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+                <Tabs defaultValue="preview" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="preview">Canvas Preview</TabsTrigger>
+                    <TabsTrigger value="editor">Edit Photo</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="preview" className="space-y-4">
+                    <div className="relative bg-secondary rounded-lg p-8 overflow-hidden">
+                      <div className="relative mx-auto" style={{ maxWidth: '600px' }}>
+                        <img 
+                          src={canvasMockup} 
+                          alt="Canvas frame mockup"
+                          className="w-full h-auto"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center p-[12%]">
+                          <canvas 
+                            ref={canvasRef}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-primary-light p-4 rounded-lg">
+                      <p className="text-sm text-center">
+                        ✓ Preview of how your photo will look on canvas
+                      </p>
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="editor" className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <h3 className="font-semibold flex items-center gap-2">
+                          <ZoomIn className="w-4 h-4" />
+                          Zoom: {zoom}%
+                        </h3>
+                        <Slider
+                          value={[zoom]}
+                          onValueChange={([v]) => setZoom(v)}
+                          min={50}
+                          max={200}
+                          step={5}
+                        />
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <h3 className="font-semibold flex items-center gap-2">
+                          <RotateCw className="w-4 h-4" />
+                          Rotation: {rotation}°
+                        </h3>
+                        <Slider
+                          value={[rotation]}
+                          onValueChange={([v]) => setRotation(v)}
+                          min={0}
+                          max={360}
+                          step={15}
+                        />
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <h3 className="font-semibold flex items-center gap-2">
+                          <Sun className="w-4 h-4" />
+                          Brightness: {brightness}%
+                        </h3>
+                        <Slider
+                          value={[brightness]}
+                          onValueChange={([v]) => setBrightness(v)}
+                          min={50}
+                          max={150}
+                          step={5}
+                        />
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <h3 className="font-semibold flex items-center gap-2">
+                          <Contrast className="w-4 h-4" />
+                          Contrast: {contrast}%
+                        </h3>
+                        <Slider
+                          value={[contrast]}
+                          onValueChange={([v]) => setContrast(v)}
+                          min={50}
+                          max={150}
+                          step={5}
+                        />
+                      </div>
+                      
+                      <div className="space-y-4 md:col-span-2">
+                        <h3 className="font-semibold flex items-center gap-2">
+                          <Sparkles className="w-4 h-4" />
+                          Saturation: {saturation}%
+                        </h3>
+                        <Slider
+                          value={[saturation]}
+                          onValueChange={([v]) => setSaturation(v)}
+                          min={0}
+                          max={200}
+                          step={5}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-4">
+                      <Button variant="outline" onClick={resetFilters} className="flex-1">
+                        Reset All
+                      </Button>
+                    </div>
+                    
+                    <canvas 
+                      ref={canvasRef}
+                      className="w-full rounded-lg bg-secondary"
+                    />
+                  </TabsContent>
+                </Tabs>
+                
                 <div className="flex gap-4">
                   <Button 
                     variant="outline" 
                     className="flex-1"
-                    onClick={() => setUploadedImage(null)}
+                    onClick={() => {
+                      setUploadedImage(null);
+                      resetFilters();
+                    }}
                   >
                     <ImageIcon className="w-4 h-4" />
                     Choose Different Image
                   </Button>
                   <Button variant="hero" className="flex-1">
-                    Continue to Editor
+                    Add to Cart
                   </Button>
-                </div>
-                <div className="bg-primary-light p-4 rounded-lg">
-                  <p className="text-sm text-center">
-                    ✓ Image resolution: Good for sizes up to 24" × 36"
-                  </p>
                 </div>
               </div>
             )}
