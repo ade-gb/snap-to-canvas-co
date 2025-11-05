@@ -95,12 +95,14 @@ export const Navbar = () => {
             {navLinks.map((link) =>
               link.hasDropdown ? (
                 <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 outline-none font-['Poppins',_sans-serif] px-3 py-2" style={{ letterSpacing: '-0.2px' }}>
-                    {link.name} ▾
+                  <DropdownMenuTrigger asChild>
+                    <button className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 outline-none font-['Poppins',_sans-serif] px-4 py-3 cursor-pointer bg-transparent border-none" style={{ letterSpacing: '-0.2px' }}>
+                      {link.name} ▾
+                    </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="center"
-                    className="min-w-[220px] bg-background border-border rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.1)] p-2"
+                    className="min-w-[220px] bg-background border-border rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.1)] p-2 z-50"
                   >
                     {shopDropdownItems.map((item) => (
                       <DropdownMenuItem key={item.name} asChild>
