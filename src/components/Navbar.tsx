@@ -1,19 +1,25 @@
-import { ShoppingCart, Menu, Search, User, X } from "lucide-react";
+import { ShoppingCart, Menu, Search, User, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 export const Navbar = () => {
   const [cartCount] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +44,15 @@ export const Navbar = () => {
     { name: "Multi-Panel Sets", href: "/products?type=multi-panel" },
     { name: "Collage Prints", href: "/products?type=collage" },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    toast({
+      title: "Signed out",
+      description: "You've been signed out successfully.",
+    });
+    navigate("/");
+  };
 
   return (
     <header
@@ -108,14 +123,49 @@ export const Navbar = () => {
             >
               <Search className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden lg:flex hover:text-primary"
-              aria-label="Account"
-            >
-              <User className="w-5 h-5" />
-            </Button>
+            
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="hidden lg:flex hover:text-primary"
+                    aria-label="Account"
+                  >
+                    <User className="w-5 h-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/track" className="w-full cursor-pointer">
+                      My Orders
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/upload" className="w-full cursor-pointer">
+                      Upload Design
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hidden lg:flex hover:text-primary"
+                  aria-label="Account"
+                >
+                  <User className="w-5 h-5" />
+                </Button>
+              </Link>
+            )}
             <Link to="/cart">
               <Button
                 variant="ghost"
@@ -191,14 +241,40 @@ export const Navbar = () => {
                         <Search className="w-5 h-5 mr-3" />
                         Search
                       </Button>
-                      <Button
-                        variant="ghost"
-                        className="justify-start px-4 hover:bg-border hover:text-primary"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <User className="w-5 h-5 mr-3" />
-                        Account
-                      </Button>
+                      {user ? (
+                        <>
+                          <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Button
+                              variant="ghost"
+                              className="w-full justify-start px-4 hover:bg-border hover:text-primary"
+                            >
+                              <User className="w-5 h-5 mr-3" />
+                              My Account
+                            </Button>
+                          </Link>
+                          <Button
+                            variant="ghost"
+                            className="justify-start px-4 hover:bg-border hover:text-primary text-destructive"
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              handleSignOut();
+                            }}
+                          >
+                            <LogOut className="w-5 h-5 mr-3" />
+                            Sign Out
+                          </Button>
+                        </>
+                      ) : (
+                        <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start px-4 hover:bg-border hover:text-primary"
+                          >
+                            <User className="w-5 h-5 mr-3" />
+                            Sign In
+                          </Button>
+                        </Link>
+                      )}
                     </div>
                   </nav>
                 </div>

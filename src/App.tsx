@@ -12,6 +12,7 @@ import Deals from "./pages/Deals";
 import Gifts from "./pages/Gifts";
 import TrackOrder from "./pages/TrackOrder";
 import Help from "./pages/Help";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/gifts" element={<Gifts />} />
           <Route path="/track" element={<TrackOrder />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
