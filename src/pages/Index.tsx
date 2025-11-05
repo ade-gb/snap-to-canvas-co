@@ -3,9 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Star, Check, TrendingUp, Shield, Heart, Package } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import canvasMockup from "@/assets/canvas-mockup.jpg";
-import workspaceCanvas from "@/assets/workspace-canvas.jpg";
 import heroImage from "@/assets/hero-image.jpg";
+import familyCanvas from "@/assets/family-canvas.jpg";
+import petCanvas from "@/assets/pet-canvas.jpg";
+import sunsetCanvas from "@/assets/sunset-canvas.jpg";
+import weddingCanvas from "@/assets/wedding-canvas.jpg";
+import landscapeCanvas from "@/assets/landscape-canvas.jpg";
+import babyCanvas from "@/assets/baby-canvas.jpg";
+import cityCanvas from "@/assets/city-canvas.jpg";
+import floralCanvas from "@/assets/floral-canvas.jpg";
 
 const howItWorks = [
   {
@@ -33,59 +39,59 @@ const howItWorks = [
 const productShowcase = [
   {
     id: "gallery-wrap",
-    image: canvasMockup,
-    title: "Gallery Wrap Canvas",
-    description: "Transform your favorite photo into a stunning gallery-wrapped canvas. Perfect for any room.",
-    price: 49,
-  },
-  {
-    id: "framed-canvas",
-    image: workspaceCanvas,
-    title: "Framed Canvas Print",
-    description: "Add elegance with our premium wood frames. Available in black, white, or natural wood.",
-    price: 79,
-  },
-  {
-    id: "split-canvas",
-    image: canvasMockup,
-    title: "Split Canvas Set",
-    description: "Create a modern gallery wall with multi-panel split canvas sets for maximum impact.",
-    price: 129,
-  },
-  {
-    id: "museum-wrap",
-    image: workspaceCanvas,
-    title: "Museum Wrap Canvas",
-    description: "Professional gallery-style with extra depth. The choice of art collectors.",
-    price: 59,
-  },
-  {
-    id: "custom-1",
-    image: canvasMockup,
+    image: familyCanvas,
     title: "Family Portrait Canvas",
     description: "Preserve precious family moments in stunning detail with archival-quality printing.",
     price: 49,
   },
   {
-    id: "custom-2",
-    image: workspaceCanvas,
+    id: "framed-canvas",
+    image: petCanvas,
     title: "Pet Portrait Canvas",
     description: "Celebrate your furry friends with a beautiful canvas that captures their personality.",
     price: 49,
   },
   {
-    id: "custom-3",
-    image: canvasMockup,
+    id: "split-canvas",
+    image: sunsetCanvas,
+    title: "Travel Memory Canvas",
+    description: "Bring your adventures home. Display your favorite travel photos in stunning clarity.",
+    price: 79,
+  },
+  {
+    id: "museum-wrap",
+    image: weddingCanvas,
     title: "Wedding Canvas",
     description: "Turn your special day into timeless wall art. Perfect for newlyweds and anniversaries.",
     price: 79,
   },
   {
-    id: "custom-4",
-    image: workspaceCanvas,
-    title: "Travel Memory Canvas",
-    description: "Bring your adventures home. Display your favorite travel photos in stunning clarity.",
+    id: "landscape-canvas",
+    image: landscapeCanvas,
+    title: "Landscape Canvas",
+    description: "Breathtaking nature scenes printed on premium canvas. Bring the outdoors inside.",
+    price: 59,
+  },
+  {
+    id: "baby-canvas",
+    image: babyCanvas,
+    title: "Baby Portrait Canvas",
+    description: "Capture precious newborn moments forever with professional canvas printing.",
     price: 49,
+  },
+  {
+    id: "city-canvas",
+    image: cityCanvas,
+    title: "City Skyline Split Canvas",
+    description: "Modern urban photography on multi-panel canvas sets for dramatic wall displays.",
+    price: 129,
+  },
+  {
+    id: "floral-canvas",
+    image: floralCanvas,
+    title: "Floral Art Canvas",
+    description: "Beautiful botanical prints that add elegance and color to any room.",
+    price: 59,
   },
 ];
 
@@ -94,25 +100,25 @@ const testimonials = [
     name: "Sarah M.",
     rating: 5,
     text: "The quality exceeded my expectations! My family photo looks absolutely stunning on the canvas.",
-    image: canvasMockup,
+    image: familyCanvas,
   },
   {
     name: "Michael R.",
     rating: 5,
     text: "Fast shipping and incredible quality. The colors are vibrant and exactly like the original photo.",
-    image: workspaceCanvas,
+    image: petCanvas,
   },
   {
     name: "Jessica L.",
     rating: 5,
     text: "I've ordered five canvases now! Each one is perfect. The best gift I've ever given.",
-    image: canvasMockup,
+    image: weddingCanvas,
   },
   {
     name: "David K.",
     rating: 5,
     text: "Amazing service from start to finish. The canvas arrived perfectly packaged and ready to hang.",
-    image: workspaceCanvas,
+    image: landscapeCanvas,
   },
 ];
 
