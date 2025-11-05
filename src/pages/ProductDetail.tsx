@@ -7,6 +7,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingCart, Upload, Check, Star } from "lucide-react";
 import { toast } from "sonner";
+import familyCanvas from "@/assets/family-canvas.jpg";
+import petCanvas from "@/assets/pet-canvas.jpg";
+import sunsetCanvas from "@/assets/sunset-canvas.jpg";
+import weddingCanvas from "@/assets/wedding-canvas.jpg";
+import landscapeCanvas from "@/assets/landscape-canvas.jpg";
+import babyCanvas from "@/assets/baby-canvas.jpg";
+import cityCanvas from "@/assets/city-canvas.jpg";
+import floralCanvas from "@/assets/floral-canvas.jpg";
 import canvasMockup from "@/assets/canvas-mockup.jpg";
 import workspaceCanvas from "@/assets/workspace-canvas.jpg";
 
@@ -69,49 +77,115 @@ const testimonials = [
   },
 ];
 
-const productData: Record<string, { title: string; description: string; features: string[] }> = {
+const productData: Record<string, { 
+  title: string; 
+  description: string; 
+  features: string[]; 
+  heroImage: string;
+  exampleImages: string[];
+}> = {
   "gallery-wrap": {
-    title: "Gallery Wrap Canvas",
-    description: "Our classic gallery wrap canvas features your image extending around the edges for a seamless, frameless look. Perfect for modern spaces and contemporary art displays.",
+    title: "Family Portrait Canvas",
+    description: "Preserve your most precious family moments with our premium gallery wrap canvas. Perfect for displaying generations of love and creating lasting memories on your walls.",
+    heroImage: familyCanvas,
+    exampleImages: [familyCanvas, petCanvas, weddingCanvas, babyCanvas, familyCanvas, sunsetCanvas],
     features: [
       "Premium 400gsm poly-cotton blend canvas",
-      "Image wraps around 1.5\" deep stretcher bars",
+      "Vibrant, true-to-life color reproduction",
       "Museum-quality archival inks",
       "Hand-stretched and ready to hang",
       "UV-resistant and fade-proof for 100+ years",
     ],
   },
   "framed-canvas": {
-    title: "Framed Canvas Print",
-    description: "Elevate your canvas print with a handcrafted wooden frame. Choose from black, white, or natural wood to perfectly complement your décor.",
+    title: "Pet Portrait Canvas",
+    description: "Celebrate your beloved furry family members with a stunning canvas portrait. Our pet canvases capture every whisker, every expression, and all the personality that makes your pet special.",
+    heroImage: petCanvas,
+    exampleImages: [petCanvas, familyCanvas, babyCanvas, floralCanvas, petCanvas, weddingCanvas],
     features: [
-      "Premium 400gsm canvas with professional framing",
-      "Solid wood frames in three finishes",
-      "Protective acrylic glazing included",
-      "Sawtooth hanger pre-installed",
+      "High-resolution printing captures fine fur details",
+      "Premium canvas with professional framing options",
+      "Scratch-resistant protective coating",
+      "Perfect gift for pet lovers",
       "Archival quality materials throughout",
     ],
   },
   "split-canvas": {
-    title: "Split Canvas Set",
-    description: "Create a stunning gallery wall with our multi-panel split canvas sets. Your image is divided across 3 or 5 panels for a modern, dynamic display.",
+    title: "Travel Memory Canvas",
+    description: "Bring your adventures home with breathtaking travel photography on canvas. From tropical sunsets to mountain vistas, transform your favorite destinations into stunning wall art.",
+    heroImage: sunsetCanvas,
+    exampleImages: [sunsetCanvas, landscapeCanvas, cityCanvas, floralCanvas, sunsetCanvas, petCanvas],
+    features: [
+      "Vibrant sunset and landscape reproduction",
+      "Multiple size options for any space",
+      "Weather-resistant inks for lasting beauty",
+      "Perfect for living rooms and offices",
+      "Professional gallery-quality finish",
+    ],
+  },
+  "museum-wrap": {
+    title: "Wedding Canvas",
+    description: "Your wedding day deserves to be celebrated forever. Transform your most romantic moments into elegant canvas art that captures the magic of your special day.",
+    heroImage: weddingCanvas,
+    exampleImages: [weddingCanvas, familyCanvas, babyCanvas, floralCanvas, weddingCanvas, petCanvas],
+    features: [
+      "Romantic soft-focus options available",
+      "Elegant presentation for special occasions",
+      "Perfect anniversary or wedding gift",
+      "Professional color matching",
+      "Archival inks rated for 200+ years",
+    ],
+  },
+  "landscape-canvas": {
+    title: "Landscape Canvas",
+    description: "Bring the majesty of nature indoors with our breathtaking landscape canvases. From snow-capped mountains to serene forests, create a peaceful atmosphere in any room.",
+    heroImage: landscapeCanvas,
+    exampleImages: [landscapeCanvas, sunsetCanvas, floralCanvas, cityCanvas, landscapeCanvas, familyCanvas],
+    features: [
+      "Stunning nature photography reproduction",
+      "Extra-deep stretcher bars for dimension",
+      "Perfect for meditation and relaxation spaces",
+      "Weather and fade-resistant inks",
+      "Professional wire hanging system included",
+    ],
+  },
+  "baby-canvas": {
+    title: "Baby Portrait Canvas",
+    description: "Capture the fleeting moments of your baby's first days, weeks, and months. Our gentle, soft-toned canvas prints preserve newborn sweetness in timeless wall art.",
+    heroImage: babyCanvas,
+    exampleImages: [babyCanvas, familyCanvas, weddingCanvas, petCanvas, babyCanvas, floralCanvas],
+    features: [
+      "Soft color grading for delicate skin tones",
+      "Perfect for nurseries and children's rooms",
+      "Safe, non-toxic materials and inks",
+      "Beautiful gift for new parents",
+      "Gentle matte finish reduces glare",
+    ],
+  },
+  "city-canvas": {
+    title: "City Skyline Split Canvas",
+    description: "Make a bold statement with dramatic urban photography displayed across multiple panels. Our split canvas sets create dynamic, modern wall displays perfect for contemporary spaces.",
+    heroImage: cityCanvas,
+    exampleImages: [cityCanvas, landscapeCanvas, sunsetCanvas, floralCanvas, cityCanvas, weddingCanvas],
     features: [
       "Available in 3-panel or 5-panel configurations",
       "Precision-aligned image splitting",
       "Each panel individually wrapped and ready to hang",
-      "Premium canvas and archival inks",
+      "Modern metropolitan aesthetic",
       "Includes spacing template for perfect alignment",
     ],
   },
-  "museum-wrap": {
-    title: "Museum Wrap Canvas",
-    description: "The premium choice for art collectors and galleries. Extra-deep 1.5\" profile creates impressive depth and shadow lines on the wall.",
+  "floral-canvas": {
+    title: "Floral Art Canvas",
+    description: "Add natural elegance to your space with beautiful botanical canvas art. Our floral prints bring color, life, and tranquility to any room with soft, artistic styling.",
+    heroImage: floralCanvas,
+    exampleImages: [floralCanvas, landscapeCanvas, babyCanvas, sunsetCanvas, floralCanvas, weddingCanvas],
     features: [
-      "Premium 400gsm artist-grade canvas",
-      "Extra-deep 1.5\" stretcher bars",
-      "Gallery-quality presentation",
-      "Archival inks rated for 200+ years",
-      "Professional wire hanging system included",
+      "Artistic botanical photography",
+      "Soft-focus background for elegant look",
+      "Perfect for bedrooms and living spaces",
+      "Coordinating color palettes available",
+      "Premium canvas with gallery-quality finish",
     ],
   },
 };
@@ -144,8 +218,8 @@ const ProductDetail = () => {
       {/* Hero Section */}
       <section className="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden">
         <img 
-          src={canvasMockup} 
-          alt="Canvas preview"
+          src={product.heroImage} 
+          alt={product.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
@@ -283,12 +357,12 @@ const ProductDetail = () => {
             Customer <span className="bg-gradient-hero bg-clip-text text-transparent">Examples</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[canvasMockup, workspaceCanvas, canvasMockup, workspaceCanvas, canvasMockup, workspaceCanvas].map((img, idx) => (
+            {product.exampleImages.map((img, idx) => (
               <Card key={idx} className="overflow-hidden group cursor-pointer hover:shadow-soft transition-all">
                 <div className="aspect-square overflow-hidden">
                   <img 
                     src={img}
-                    alt={`Example ${idx + 1}`}
+                    alt={`${product.title} example ${idx + 1}`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
