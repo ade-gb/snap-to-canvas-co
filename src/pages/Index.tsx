@@ -1,67 +1,320 @@
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features";
-import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+import { Upload, Star, Check, TrendingUp, Shield, Heart, Package } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import canvasMockup from "@/assets/canvas-mockup.jpg";
 import workspaceCanvas from "@/assets/workspace-canvas.jpg";
+import heroImage from "@/assets/hero-image.jpg";
 
-const featuredProducts = [
+const howItWorks = [
+  {
+    step: 1,
+    title: "Upload Your Photo",
+    description: "Choose your favorite memory from your device",
+  },
+  {
+    step: 2,
+    title: "Select Size & Style",
+    description: "Pick the perfect size and frame for your space",
+  },
+  {
+    step: 3,
+    title: "We Print & Ship",
+    description: "Professional printing with free shipping",
+  },
+  {
+    step: 4,
+    title: "Display & Enjoy",
+    description: "Ready to hang and cherish forever",
+  },
+];
+
+const productShowcase = [
   {
     id: "gallery-wrap",
-    name: "Gallery Wrap Canvas",
-    description: "Classic canvas wrap with image extending around the edges",
-    startingPrice: 49,
     image: canvasMockup,
+    title: "Gallery Wrap Canvas",
+    description: "Transform your favorite photo into a stunning gallery-wrapped canvas. Perfect for any room.",
+    price: 49,
   },
   {
     id: "framed-canvas",
-    name: "Framed Canvas Print",
-    description: "Premium canvas with your choice of wood frame",
-    startingPrice: 79,
     image: workspaceCanvas,
+    title: "Framed Canvas Print",
+    description: "Add elegance with our premium wood frames. Available in black, white, or natural wood.",
+    price: 79,
   },
   {
     id: "split-canvas",
-    name: "Split Canvas Set",
-    description: "Multi-panel canvas for a modern gallery wall look",
-    startingPrice: 129,
     image: canvasMockup,
+    title: "Split Canvas Set",
+    description: "Create a modern gallery wall with multi-panel split canvas sets for maximum impact.",
+    price: 129,
+  },
+  {
+    id: "museum-wrap",
+    image: workspaceCanvas,
+    title: "Museum Wrap Canvas",
+    description: "Professional gallery-style with extra depth. The choice of art collectors.",
+    price: 59,
+  },
+  {
+    id: "custom-1",
+    image: canvasMockup,
+    title: "Family Portrait Canvas",
+    description: "Preserve precious family moments in stunning detail with archival-quality printing.",
+    price: 49,
+  },
+  {
+    id: "custom-2",
+    image: workspaceCanvas,
+    title: "Pet Portrait Canvas",
+    description: "Celebrate your furry friends with a beautiful canvas that captures their personality.",
+    price: 49,
+  },
+  {
+    id: "custom-3",
+    image: canvasMockup,
+    title: "Wedding Canvas",
+    description: "Turn your special day into timeless wall art. Perfect for newlyweds and anniversaries.",
+    price: 79,
+  },
+  {
+    id: "custom-4",
+    image: workspaceCanvas,
+    title: "Travel Memory Canvas",
+    description: "Bring your adventures home. Display your favorite travel photos in stunning clarity.",
+    price: 49,
+  },
+];
+
+const testimonials = [
+  {
+    name: "Sarah M.",
+    rating: 5,
+    text: "The quality exceeded my expectations! My family photo looks absolutely stunning on the canvas.",
+    image: canvasMockup,
+  },
+  {
+    name: "Michael R.",
+    rating: 5,
+    text: "Fast shipping and incredible quality. The colors are vibrant and exactly like the original photo.",
+    image: workspaceCanvas,
+  },
+  {
+    name: "Jessica L.",
+    rating: 5,
+    text: "I've ordered five canvases now! Each one is perfect. The best gift I've ever given.",
+    image: canvasMockup,
+  },
+  {
+    name: "David K.",
+    rating: 5,
+    text: "Amazing service from start to finish. The canvas arrived perfectly packaged and ready to hang.",
+    image: workspaceCanvas,
+  },
+];
+
+const whyChooseUs = [
+  {
+    icon: Shield,
+    title: "100% Satisfaction Guarantee",
+    description: "Love it or your money back, no questions asked",
+  },
+  {
+    icon: TrendingUp,
+    title: "Premium Quality",
+    description: "Museum-grade materials and archival inks",
+  },
+  {
+    icon: Package,
+    title: "Free Shipping",
+    description: "Fast, free delivery on all orders",
+  },
+  {
+    icon: Heart,
+    title: "Made with Care",
+    description: "Handcrafted by experienced artisans",
   },
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
-      <Features />
       
-      {/* Featured Products */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Popular <span className="bg-gradient-hero bg-clip-text text-transparent">Canvas Styles</span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Explore our most loved canvas options
+      {/* Hero Section */}
+      <section className="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden">
+        <img 
+          src={heroImage} 
+          alt="Beautiful canvas prints"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        <div className="absolute inset-0 flex items-end justify-center pb-8 md:pb-16">
+          <div className="text-center text-white px-4 max-w-3xl">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+              Transform Your Memories
+            </h1>
+            <p className="text-lg md:text-xl mb-6 drop-shadow-md">
+              Turn your favorite photos into stunning canvas art
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
+        </div>
+      </section>
+
+      {/* Main CTA Section */}
+      <section className="container mx-auto px-4 -mt-20 relative z-10 mb-16">
+        <Card className="max-w-4xl mx-auto p-8 md:p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Create Your <span className="bg-gradient-hero bg-clip-text text-transparent">Perfect Canvas</span>
+          </h2>
+          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+            Professional quality printing on premium canvas. Free shipping, 100% satisfaction guaranteed. 
+            Your memories deserve the best.
+          </p>
+          <Button 
+            variant="hero" 
+            size="lg"
+            className="text-lg px-12"
+            onClick={() => navigate("/upload")}
+          >
+            <Upload className="w-6 h-6" />
+            Start Designing Now
+          </Button>
+        </Card>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            How It <span className="bg-gradient-hero bg-clip-text text-transparent">Works</span>
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {howItWorks.map((step) => (
+              <Card key={step.step} className="p-6 text-center hover:shadow-soft transition-shadow bg-background">
+                <div className="w-16 h-16 rounded-full bg-gradient-hero flex items-center justify-center text-2xl font-bold text-primary-foreground mx-auto mb-4">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+              </Card>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link to="/products">
-              <Button variant="outline" size="lg">
-                View All Products
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+        </div>
+      </section>
+
+      {/* Product Showcase */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            Popular <span className="bg-gradient-hero bg-clip-text text-transparent">Canvas Styles</span>
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {productShowcase.map((product) => (
+              <Card key={product.id} className="overflow-hidden hover:shadow-soft transition-all group">
+                <div className="aspect-square overflow-hidden bg-secondary">
+                  <img 
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-sm text-muted-foreground">From</span>
+                    <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                      ${product.price}
+                    </span>
+                  </div>
+                  <Link to={`/product/${product.id}`}>
+                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      Customize Now
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            What Our <span className="bg-gradient-hero bg-clip-text text-transparent">Customers Say</span>
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {testimonials.map((testimonial, idx) => (
+              <Card key={idx} className="p-6 hover:shadow-soft transition-shadow bg-background">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="text-foreground/90 mb-4 text-sm italic">
+                  "{testimonial.text}"
+                </p>
+                <p className="font-semibold text-sm">— {testimonial.name}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            Why Choose <span className="bg-gradient-hero bg-clip-text text-transparent">Snap4Canvas</span>
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {whyChooseUs.map((feature, idx) => (
+              <Card key={idx} className="p-6 text-center hover:shadow-soft transition-shadow">
+                <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 bg-gradient-hero">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
+            Ready to Get Started?
+          </h2>
+          <p className="text-primary-foreground/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            Join thousands of happy customers who've transformed their memories into beautiful canvas art
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg"
+              className="bg-background text-foreground hover:bg-background/90 text-lg px-12"
+              onClick={() => navigate("/upload")}
+            >
+              <Upload className="w-6 h-6" />
+              Upload Your Photo
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-12"
+              onClick={() => navigate("/products")}
+            >
+              Browse Products
+            </Button>
           </div>
         </div>
       </section>
@@ -81,6 +334,23 @@ const Index = () => {
             <p className="text-muted-foreground mb-4">
               Transform your memories into stunning canvas art
             </p>
+            <div className="flex flex-wrap justify-center gap-6 mb-6 text-sm">
+              <Link to="/products" className="text-muted-foreground hover:text-foreground transition-colors">
+                Products
+              </Link>
+              <Link to="/deals" className="text-muted-foreground hover:text-foreground transition-colors">
+                Deals
+              </Link>
+              <Link to="/gifts" className="text-muted-foreground hover:text-foreground transition-colors">
+                Gifts
+              </Link>
+              <Link to="/help" className="text-muted-foreground hover:text-foreground transition-colors">
+                Help
+              </Link>
+              <Link to="/track" className="text-muted-foreground hover:text-foreground transition-colors">
+                Track Order
+              </Link>
+            </div>
             <p className="text-sm text-muted-foreground">
               © 2025 Snap4Canvas. All rights reserved.
             </p>
