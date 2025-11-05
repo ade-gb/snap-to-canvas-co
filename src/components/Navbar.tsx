@@ -250,18 +250,18 @@ export const Navbar = () => {
                 <div className="mt-auto border-t border-border">
                   <div className="p-6">
                     <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button className="w-full bg-[#0B87C5] hover:bg-[#0B87C5]/90 text-white h-12 text-base font-medium rounded-lg">
+                      <Button className="w-full bg-primary hover:bg-primary-hover text-primary-foreground h-12 text-base font-medium rounded-lg">
                         Create your print
                       </Button>
                     </Link>
                   </div>
                   
-                  <div className="bg-[#0B87C5] text-white px-6 py-6 text-center relative">
+                  <div className="bg-primary text-primary-foreground px-6 py-6 text-center relative">
                     <p className="text-sm leading-relaxed">
                       Transform your photos — Get 90% Off Canvas Prints! <span className="font-bold underline">Save Now</span>
                     </p>
-                    <button className="absolute bottom-4 right-6 w-12 h-12 rounded-full bg-white flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#0B87C5]">
+                    <button className="absolute bottom-4 right-6 w-12 h-12 rounded-full bg-background flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-primary">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </button>
