@@ -17,6 +17,7 @@ export const Navbar = () => {
   const [cartCount] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showProductSubmenu, setShowProductSubmenu] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -218,19 +219,52 @@ export const Navbar = () => {
                   <nav className="py-4">
                     <div className="flex flex-col">
                       {mobileMenuItems.map((item) => (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <span>{item.name}</span>
-                          {item.hasArrow && (
-                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" className="text-muted-foreground">
-                              <path d="M1 1L7 7L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                        <div key={item.name}>
+                          {item.hasArrow ? (
+                            <>
+                              <button
+                                onClick={() => setShowProductSubmenu(!showProductSubmenu)}
+                                className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors w-full text-left"
+                              >
+                                <span>{item.name}</span>
+                                <svg 
+                                  width="8" 
+                                  height="14" 
+                                  viewBox="0 0 8 14" 
+                                  fill="none" 
+                                  className={`text-muted-foreground transition-transform ${showProductSubmenu ? 'rotate-90' : ''}`}
+                                >
+                                  <path d="M1 1L7 7L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </button>
+                              {showProductSubmenu && (
+                                <div className="bg-muted/30">
+                                  {shopDropdownItems.map((subItem) => (
+                                    <Link
+                                      key={subItem.name}
+                                      to={subItem.href}
+                                      className="flex items-center px-10 py-3 text-foreground/80 font-normal text-sm border-b border-border hover:bg-border/50 transition-colors"
+                                      onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setShowProductSubmenu(false);
+                                      }}
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <Link
+                              to={item.href}
+                              className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              <span>{item.name}</span>
+                            </Link>
                           )}
-                        </Link>
+                        </div>
                       ))}
                       {user ? (
                         <button
