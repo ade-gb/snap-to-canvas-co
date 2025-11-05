@@ -95,7 +95,7 @@ export const Navbar = () => {
             {navLinks.map((link) =>
               link.hasDropdown ? (
                 <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 outline-none font-['Poppins',_sans-serif]" style={{ letterSpacing: '-0.2px' }}>
+                  <DropdownMenuTrigger className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 outline-none font-['Poppins',_sans-serif] px-3 py-2" style={{ letterSpacing: '-0.2px' }}>
                     {link.name} ▾
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
