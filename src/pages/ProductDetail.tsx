@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingCart, Upload, Check, Star } from "lucide-react";
 import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
 import familyCanvas from "@/assets/family-canvas.jpg";
 import petCanvas from "@/assets/pet-canvas.jpg";
 import sunsetCanvas from "@/assets/sunset-canvas.jpg";
@@ -193,6 +194,7 @@ const productData: Record<string, {
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState("16x20");
   const [selectedFrame, setSelectedFrame] = useState("none");
 
@@ -202,8 +204,15 @@ const ProductDetail = () => {
   const totalPrice = (selectedSizeData?.price || 0) + (selectedFrameData?.price || 0);
 
   const handleAddToCart = () => {
-    toast.success("Added to cart!", {
-      description: `${selectedSizeData?.label} canvas with ${selectedFrameData?.label.toLowerCase()}`,
+    addToCart({
+      productId: id || "gallery-wrap",
+      productName: product.title,
+      productImage: product.heroImage,
+      size: selectedSize,
+      sizeLabel: selectedSizeData?.label || "",
+      frame: selectedFrame,
+      frameLabel: selectedFrameData?.label || "",
+      price: totalPrice,
     });
   };
 

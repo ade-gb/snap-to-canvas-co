@@ -1,5 +1,6 @@
 import { ShoppingCart, Menu, Search, User, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
@@ -11,16 +12,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/hooks/useAuth";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
 
 export const Navbar = () => {
-  const [cartCount] = useState(0);
+  const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showProductSubmenu, setShowProductSubmenu] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
-  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,10 +63,7 @@ export const Navbar = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    toast({
-      title: "Signed out",
-      description: "You've been signed out successfully.",
-    });
+    toast.success("Signed out successfully");
     navigate("/");
   };
 
@@ -192,9 +190,12 @@ export const Navbar = () => {
               >
                 <ShoppingCart className="w-5 h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-semibold">
+                  <Badge 
+                    variant="destructive" 
+                    className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                  >
                     {cartCount}
-                  </span>
+                  </Badge>
                 )}
               </Button>
             </Link>
