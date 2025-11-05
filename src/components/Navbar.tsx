@@ -45,6 +45,14 @@ export const Navbar = () => {
     { name: "Collage Prints", href: "/products?type=collage" },
   ];
 
+  const mobileMenuItems = [
+    { name: "Products", href: "/products", hasArrow: true },
+    { name: "Gifts", href: "/gifts" },
+    { name: "Reviews", href: "/help#reviews" },
+    { name: "Contact us", href: "/help#contact" },
+    { name: "FAQ", href: "/help#faq" },
+  ];
+
   const handleSignOut = async () => {
     await signOut();
     toast({
@@ -196,87 +204,68 @@ export const Navbar = () => {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="w-[280px] bg-background p-0"
+                className="w-full sm:w-[320px] bg-background p-0 flex flex-col"
               >
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between p-6 border-b border-border">
-                    <span className="font-bold text-xl text-primary font-['Poppins',_sans-serif]">
-                      Menu
-                    </span>
-                  </div>
-                  <nav className="flex-1 py-6 px-4 overflow-y-auto">
-                    <div className="flex flex-col gap-1">
-                      {navLinks.map((link) => (
-                        <div key={link.name}>
-                          <Link
-                            to={link.href}
-                            className="block px-4 py-3 text-foreground font-medium hover:bg-border hover:text-primary rounded-md transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {link.name}
-                          </Link>
-                          {link.hasDropdown && (
-                            <div className="ml-4 mt-1 flex flex-col gap-1">
-                              {shopDropdownItems.map((item) => (
-                                <Link
-                                  key={item.name}
-                                  to={item.href}
-                                  className="block px-4 py-2 text-sm text-muted-foreground hover:bg-border hover:text-primary rounded-md transition-colors"
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                  {item.name}
-                                </Link>
-                              ))}
-                            </div>
+                <div className="flex-1 overflow-y-auto">
+                  <nav className="py-4">
+                    <div className="flex flex-col">
+                      {mobileMenuItems.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span>{item.name}</span>
+                          {item.hasArrow && (
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" className="text-muted-foreground">
+                              <path d="M1 1L7 7L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
                           )}
-                        </div>
+                        </Link>
                       ))}
-                    </div>
-                    <div className="mt-6 pt-6 border-t border-border flex flex-col gap-2">
-                      <Button
-                        variant="ghost"
-                        className="justify-start px-4 hover:bg-border hover:text-primary"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Search className="w-5 h-5 mr-3" />
-                        Search
-                      </Button>
                       {user ? (
-                        <>
-                          <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Button
-                              variant="ghost"
-                              className="w-full justify-start px-4 hover:bg-border hover:text-primary"
-                            >
-                              <User className="w-5 h-5 mr-3" />
-                              My Account
-                            </Button>
-                          </Link>
-                          <Button
-                            variant="ghost"
-                            className="justify-start px-4 hover:bg-border hover:text-primary text-destructive"
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              handleSignOut();
-                            }}
-                          >
-                            <LogOut className="w-5 h-5 mr-3" />
-                            Sign Out
-                          </Button>
-                        </>
+                        <button
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            handleSignOut();
+                          }}
+                          className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors w-full text-left"
+                        >
+                          <span>Logout</span>
+                        </button>
                       ) : (
-                        <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-                          <Button
-                            variant="ghost"
-                            className="w-full justify-start px-4 hover:bg-border hover:text-primary"
-                          >
-                            <User className="w-5 h-5 mr-3" />
-                            Sign In
-                          </Button>
+                        <Link
+                          to="/auth"
+                          className="flex items-center justify-between px-6 py-4 text-foreground font-normal text-base border-b border-border hover:bg-border/50 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span>Login</span>
                         </Link>
                       )}
                     </div>
                   </nav>
+                </div>
+                
+                <div className="mt-auto border-t border-border">
+                  <div className="p-6">
+                    <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full bg-[#0B87C5] hover:bg-[#0B87C5]/90 text-white h-12 text-base font-medium rounded-lg">
+                        Create your print
+                      </Button>
+                    </Link>
+                  </div>
+                  
+                  <div className="bg-[#0B87C5] text-white px-6 py-6 text-center relative">
+                    <p className="text-sm leading-relaxed">
+                      Transform your photos — Get 90% Off Canvas Prints! <span className="font-bold underline">Save Now</span>
+                    </p>
+                    <button className="absolute bottom-4 right-6 w-12 h-12 rounded-full bg-white flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#0B87C5]">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
