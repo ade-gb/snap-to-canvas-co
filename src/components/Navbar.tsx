@@ -1,59 +1,212 @@
-import { ShoppingCart, Menu, Upload } from "lucide-react";
+import { ShoppingCart, Menu, Search, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Navbar = () => {
   const [cartCount] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Shop Canvas", href: "/products", hasDropdown: true },
+    { name: "Deals", href: "/deals" },
+    { name: "Gifts", href: "/gifts" },
+    { name: "Track Order", href: "/track" },
+    { name: "Help", href: "/help" },
+  ];
+
+  const shopDropdownItems = [
+    { name: "Single Canvas Prints", href: "/products?type=single" },
+    { name: "Framed Prints", href: "/products?type=framed" },
+    { name: "Multi-Panel Sets", href: "/products?type=multi-panel" },
+    { name: "Collage Prints", href: "/products?type=collage" },
+  ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-hero rounded-lg flex items-center justify-center">
-              <span className="text-xl font-bold text-primary-foreground">S4C</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+    <header
+      className={`sticky top-0 z-50 bg-background transition-all duration-300 ${
+        isScrolled ? "shadow-[0_2px_8px_rgba(0,0,0,0.05)]" : ""
+      }`}
+      role="banner"
+    >
+      <nav
+        className="container mx-auto px-4 lg:px-8"
+        aria-label="Main Navigation"
+      >
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-bold text-xl lg:text-2xl text-primary tracking-tight z-10"
+          >
+            <span className="font-['Poppins',_sans-serif] font-bold" style={{ letterSpacing: '-0.2px' }}>
               Snap4Canvas
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-foreground hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link to="/products" className="text-foreground hover:text-primary transition-colors">
-              Products
-            </Link>
-            <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors">
-              How It Works
-            </Link>
+          {/* Desktop Navigation - Center */}
+          <div className="hidden lg:flex items-center gap-7 absolute left-1/2 transform -translate-x-1/2">
+            {navLinks.map((link) =>
+              link.hasDropdown ? (
+                <DropdownMenu key={link.name}>
+                  <DropdownMenuTrigger className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 outline-none font-['Poppins',_sans-serif]" style={{ letterSpacing: '-0.2px' }}>
+                    {link.name} ▾
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="center"
+                    className="min-w-[220px] bg-background border-border rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.1)] p-2"
+                  >
+                    {shopDropdownItems.map((item) => (
+                      <DropdownMenuItem key={item.name} asChild>
+                        <Link
+                          to={item.href}
+                          className="block px-4 py-3 text-foreground hover:bg-border hover:text-primary-hover rounded-md transition-colors cursor-pointer"
+                        >
+                          {item.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-foreground font-medium text-[15px] hover:text-primary transition-colors duration-250 font-['Poppins',_sans-serif]"
+                  style={{ letterSpacing: '-0.2px' }}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
           </div>
 
-          <div className="flex items-center gap-3">
-            <Link to="/upload">
-              <Button variant="hero" size="sm" className="hidden sm:flex">
-                <Upload className="w-4 h-4" />
-                Create Canvas
-              </Button>
-            </Link>
+          {/* Right Icons */}
+          <div className="flex items-center gap-3 lg:gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden lg:flex hover:text-primary"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden lg:flex hover:text-primary"
+              aria-label="Account"
+            >
+              <User className="w-5 h-5" />
+            </Button>
             <Link to="/cart">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative hover:text-primary"
+                aria-label={`Cart with ${cartCount} items`}
+              >
                 <ShoppingCart className="w-5 h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-semibold">
                     {cartCount}
                   </span>
                 )}
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="w-5 h-5" />
-            </Button>
+
+            {/* Mobile Menu Toggle */}
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="lg:hidden"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="w-6 h-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className="w-[280px] bg-background p-0"
+              >
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between p-6 border-b border-border">
+                    <span className="font-bold text-xl text-primary font-['Poppins',_sans-serif]">
+                      Menu
+                    </span>
+                  </div>
+                  <nav className="flex-1 py-6 px-4 overflow-y-auto">
+                    <div className="flex flex-col gap-1">
+                      {navLinks.map((link) => (
+                        <div key={link.name}>
+                          <Link
+                            to={link.href}
+                            className="block px-4 py-3 text-foreground font-medium hover:bg-border hover:text-primary rounded-md transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {link.name}
+                          </Link>
+                          {link.hasDropdown && (
+                            <div className="ml-4 mt-1 flex flex-col gap-1">
+                              {shopDropdownItems.map((item) => (
+                                <Link
+                                  key={item.name}
+                                  to={item.href}
+                                  className="block px-4 py-2 text-sm text-muted-foreground hover:bg-border hover:text-primary rounded-md transition-colors"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-6 border-t border-border flex flex-col gap-2">
+                      <Button
+                        variant="ghost"
+                        className="justify-start px-4 hover:bg-border hover:text-primary"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Search className="w-5 h-5 mr-3" />
+                        Search
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="justify-start px-4 hover:bg-border hover:text-primary"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <User className="w-5 h-5 mr-3" />
+                        Account
+                      </Button>
+                    </div>
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
