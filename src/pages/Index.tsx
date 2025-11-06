@@ -157,11 +157,11 @@ const Index = () => {
         <img 
           src={heroImage} 
           alt="Beautiful canvas prints"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-fade-in"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         <div className="absolute inset-0 flex items-end justify-center pb-8 md:pb-16">
-          <div className="text-center text-white px-4 max-w-3xl">
+          <div className="text-center text-white px-4 max-w-3xl animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
               Transform Your Memories
             </h1>
@@ -174,7 +174,7 @@ const Index = () => {
 
       {/* Main CTA Section */}
       <section className="container mx-auto px-4 -mt-20 relative z-10 mb-16">
-        <Card className="max-w-4xl mx-auto p-8 md:p-12 text-center">
+        <Card className="max-w-4xl mx-auto p-8 md:p-12 text-center animate-scale-in" style={{ animationDelay: "0.4s", animationFillMode: "both" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Create Your <span className="bg-gradient-hero bg-clip-text text-transparent">Perfect Canvas</span>
           </h2>
@@ -185,7 +185,7 @@ const Index = () => {
           <Button 
             variant="hero" 
             size="lg"
-            className="text-lg px-12"
+            className="text-lg px-12 hover-scale"
             onClick={() => navigate("/upload")}
           >
             <Upload className="w-6 h-6" />
@@ -201,8 +201,12 @@ const Index = () => {
             How It <span className="bg-gradient-hero bg-clip-text text-transparent">Works</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {howItWorks.map((step) => (
-              <Card key={step.step} className="p-6 text-center hover:shadow-soft transition-shadow bg-background">
+            {howItWorks.map((step, idx) => (
+              <Card 
+                key={step.step} 
+                className="p-6 text-center hover:shadow-soft transition-all bg-background hover-scale animate-fade-in"
+                style={{ animationDelay: `${idx * 0.1}s`, animationFillMode: "both" }}
+              >
                 <div className="w-16 h-16 rounded-full bg-gradient-hero flex items-center justify-center text-2xl font-bold text-primary-foreground mx-auto mb-4">
                   {step.step}
                 </div>
@@ -221,13 +225,17 @@ const Index = () => {
             Popular <span className="bg-gradient-hero bg-clip-text text-transparent">Canvas Styles</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {productShowcase.map((product) => (
-              <Card key={product.id} className="overflow-hidden hover:shadow-soft transition-all group">
+            {productShowcase.map((product, idx) => (
+              <Card 
+                key={product.id} 
+                className="overflow-hidden hover:shadow-soft transition-all group animate-fade-in hover-scale"
+                style={{ animationDelay: `${idx * 0.05}s`, animationFillMode: "both" }}
+              >
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <img 
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">
@@ -261,10 +269,14 @@ const Index = () => {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {testimonials.map((testimonial, idx) => (
-              <Card key={idx} className="p-6 hover:shadow-soft transition-shadow bg-background">
+              <Card 
+                key={idx} 
+                className="p-6 hover:shadow-soft transition-all bg-background hover-scale animate-fade-in"
+                style={{ animationDelay: `${idx * 0.1}s`, animationFillMode: "both" }}
+              >
                 <div className="flex gap-1 mb-3">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    <Star key={i} className="w-4 h-4 fill-primary text-primary animate-scale-in" style={{ animationDelay: `${(idx * 0.1) + (i * 0.05)}s`, animationFillMode: "both" }} />
                   ))}
                 </div>
                 <p className="text-foreground/90 mb-4 text-sm italic">
@@ -285,8 +297,12 @@ const Index = () => {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {whyChooseUs.map((feature, idx) => (
-              <Card key={idx} className="p-6 text-center hover:shadow-soft transition-shadow">
-                <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
+              <Card 
+                key={idx} 
+                className="p-6 text-center hover:shadow-soft transition-all hover-scale animate-fade-in"
+                style={{ animationDelay: `${idx * 0.1}s`, animationFillMode: "both" }}
+              >
+                <feature.icon className="w-12 h-12 text-primary mx-auto mb-4 animate-scale-in" style={{ animationDelay: `${idx * 0.1 + 0.2}s`, animationFillMode: "both" }} />
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm">{feature.description}</p>
               </Card>
@@ -297,7 +313,7 @@ const Index = () => {
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-hero">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
             Ready to Get Started?
           </h2>
@@ -307,7 +323,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg"
-              className="bg-background text-foreground hover:bg-background/90 text-lg px-12"
+              className="bg-background text-foreground hover:bg-background/90 text-lg px-12 hover-scale"
               onClick={() => navigate("/upload")}
             >
               <Upload className="w-6 h-6" />
@@ -316,7 +332,7 @@ const Index = () => {
             <Button 
               variant="outline"
               size="lg"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-12"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-12 hover-scale"
               onClick={() => navigate("/products")}
             >
               Browse Products

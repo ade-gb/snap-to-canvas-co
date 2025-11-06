@@ -13,12 +13,12 @@ interface ProductCardProps {
 
 export const ProductCard = ({ id, name, description, startingPrice, image }: ProductCardProps) => {
   return (
-    <Card className="group overflow-hidden hover:shadow-soft transition-all duration-300 border-border">
+    <Card className="group overflow-hidden hover:shadow-soft transition-all duration-300 border-border hover-scale">
       <div className="aspect-square overflow-hidden bg-secondary">
         <img 
           src={image} 
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
       </div>
       <CardContent className="p-6">

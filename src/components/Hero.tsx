@@ -17,31 +17,31 @@ export const Hero = () => {
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
             Turn Your Memories Into{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
               Stunning Canvas Art
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
             Upload your favorite photos and create museum-quality canvas prints. 
             Custom sizes, premium frames, and shipped right to your door.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: "0.4s", animationFillMode: "both" }}>
             <Link to="/upload">
-              <Button variant="hero" size="lg" className="w-full sm:w-auto group">
+              <Button variant="hero" size="lg" className="w-full sm:w-auto group hover-scale">
                 <Upload className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Create Your Canvas
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to="/products">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto hover-scale">
                 Browse Products
               </Button>
             </Link>
           </div>
-          <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.6s", animationFillMode: "both" }}>
             <div className="flex items-center gap-2">
               <span className="text-2xl">✓</span>
               <span>Premium Quality</span>

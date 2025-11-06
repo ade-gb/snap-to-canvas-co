@@ -69,7 +69,7 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-background transition-all duration-300 ${
+      className={`sticky top-0 z-50 bg-background transition-all duration-300 animate-slide-down ${
         isScrolled ? "shadow-[0_2px_8px_rgba(0,0,0,0.05)]" : ""
       }`}
       role="banner"

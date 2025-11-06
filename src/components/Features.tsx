@@ -34,10 +34,11 @@ export const Features = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature) => (
+          {features.map((feature, idx) => (
             <div 
               key={feature.title}
-              className="text-center group"
+              className="text-center group animate-fade-in"
+              style={{ animationDelay: `${idx * 0.1}s`, animationFillMode: "both" }}
             >
               <div className="w-16 h-16 mx-auto mb-4 bg-primary-light rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <feature.icon className="w-8 h-8 text-primary" />
