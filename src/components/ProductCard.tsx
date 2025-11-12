@@ -8,10 +8,11 @@ interface ProductCardProps {
   name: string;
   description: string;
   startingPrice: number;
+  originalPrice?: number;
   image: string;
 }
 
-export const ProductCard = ({ id, name, description, startingPrice, image }: ProductCardProps) => {
+export const ProductCard = ({ id, name, description, startingPrice, originalPrice, image }: ProductCardProps) => {
   return (
     <Card className="group overflow-hidden hover:shadow-soft transition-all duration-300 border-border hover-scale">
       <div className="aspect-square overflow-hidden bg-secondary">
@@ -24,10 +25,23 @@ export const ProductCard = ({ id, name, description, startingPrice, image }: Pro
       <CardContent className="p-6">
         <h3 className="text-xl font-semibold mb-2">{name}</h3>
         <p className="text-muted-foreground text-sm mb-4">{description}</p>
-        <div className="flex items-baseline gap-2">
-          <span className="text-sm text-muted-foreground">Starting at</span>
-          <span className="text-2xl font-bold text-primary">${startingPrice}</span>
-        </div>
+        {originalPrice ? (
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-sm line-through text-muted-foreground">${originalPrice}</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xs text-muted-foreground">If you order now:</span>
+              <span className="text-2xl font-bold text-primary">${startingPrice}</span>
+            </div>
+            <span className="text-xs text-muted-foreground">+ shipping and handling</span>
+          </div>
+        ) : (
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm text-muted-foreground">Starting at</span>
+            <span className="text-2xl font-bold text-primary">${startingPrice}</span>
+          </div>
+        )}
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Link to={`/product/${id}`} className="w-full">

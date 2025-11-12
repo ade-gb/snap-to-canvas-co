@@ -101,7 +101,7 @@ export const Navbar = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="center"
-                    className="min-w-[220px] bg-background border-border rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.1)] p-2 z-50"
+                    className="min-w-[220px] bg-background border-border rounded-lg shadow-lg p-2 z-[100]"
                   >
                     {shopDropdownItems.map((item) => (
                       <DropdownMenuItem key={item.name} asChild>
@@ -151,7 +151,7 @@ export const Navbar = () => {
                     <User className="w-5 h-5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuContent align="end" className="w-48 bg-background z-[100]">
                   <DropdownMenuItem asChild>
                     <Link to="/track" className="w-full cursor-pointer">
                       My Orders

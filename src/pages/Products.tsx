@@ -29,7 +29,8 @@ const allProducts = [
     id: "gallery-wrap",
     name: "Family Portrait Canvas",
     description: "Preserve precious family moments in stunning detail with archival-quality printing.",
-    startingPrice: 49,
+    startingPrice: 12.99,
+    originalPrice: 145,
     image: familyCanvas,
     category: "family",
     rating: 5,
@@ -40,7 +41,8 @@ const allProducts = [
     id: "framed-canvas",
     name: "Pet Portrait Canvas",
     description: "Celebrate your furry friends with a beautiful canvas that captures their personality.",
-    startingPrice: 49,
+    startingPrice: 12.99,
+    originalPrice: 145,
     image: petCanvas,
     category: "pets",
     rating: 5,
@@ -51,7 +53,8 @@ const allProducts = [
     id: "split-canvas",
     name: "Travel Memory Canvas",
     description: "Bring your adventures home. Display your favorite travel photos in stunning clarity.",
-    startingPrice: 79,
+    startingPrice: 13.99,
+    originalPrice: 149,
     image: sunsetCanvas,
     category: "travel",
     rating: 5,
@@ -62,7 +65,8 @@ const allProducts = [
     id: "museum-wrap",
     name: "Wedding Canvas",
     description: "Turn your special day into timeless wall art. Perfect for newlyweds and anniversaries.",
-    startingPrice: 79,
+    startingPrice: 15.99,
+    originalPrice: 159,
     image: weddingCanvas,
     category: "weddings",
     rating: 5,
@@ -73,7 +77,8 @@ const allProducts = [
     id: "landscape-canvas",
     name: "Landscape Canvas",
     description: "Breathtaking nature scenes printed on premium canvas. Bring the outdoors inside.",
-    startingPrice: 59,
+    startingPrice: 13.99,
+    originalPrice: 149,
     image: landscapeCanvas,
     category: "nature",
     rating: 5,
@@ -84,7 +89,8 @@ const allProducts = [
     id: "baby-canvas",
     name: "Baby Portrait Canvas",
     description: "Capture precious newborn moments forever with professional canvas printing.",
-    startingPrice: 49,
+    startingPrice: 12.99,
+    originalPrice: 145,
     image: babyCanvas,
     category: "babies",
     rating: 5,
@@ -95,7 +101,8 @@ const allProducts = [
     id: "city-canvas",
     name: "City Skyline Split Canvas",
     description: "Modern urban photography on multi-panel canvas sets for dramatic wall displays.",
-    startingPrice: 129,
+    startingPrice: 18.95,
+    originalPrice: 169,
     image: cityCanvas,
     category: "travel",
     rating: 5,
@@ -106,7 +113,8 @@ const allProducts = [
     id: "floral-canvas",
     name: "Floral Art Canvas",
     description: "Beautiful botanical prints that add elegance and color to any room.",
-    startingPrice: 59,
+    startingPrice: 15.99,
+    originalPrice: 159,
     image: floralCanvas,
     category: "nature",
     rating: 5,
@@ -207,11 +215,19 @@ const Products = () => {
                   </span>
                 </div>
 
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-sm text-muted-foreground">Starting at</span>
-                  <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-                    ${product.startingPrice}
-                  </span>
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg line-through text-muted-foreground">
+                      ${product.originalPrice}
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-sm text-muted-foreground">If you order now:</span>
+                    <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                      ${product.startingPrice}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">+ shipping and handling</span>
                 </div>
                 
                 <Link to={`/product/${product.id}`}>

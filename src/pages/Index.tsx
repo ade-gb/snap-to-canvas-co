@@ -43,56 +43,48 @@ const productShowcase = [
     image: familyCanvas,
     title: "Family Portrait Canvas",
     description: "Preserve precious family moments in stunning detail with archival-quality printing.",
-    price: 49,
+    price: 12.99,
+    originalPrice: 145,
   },
   {
     id: "framed-canvas",
     image: petCanvas,
     title: "Pet Portrait Canvas",
     description: "Celebrate your furry friends with a beautiful canvas that captures their personality.",
-    price: 49,
+    price: 12.99,
+    originalPrice: 145,
   },
   {
     id: "split-canvas",
     image: sunsetCanvas,
     title: "Travel Memory Canvas",
     description: "Bring your adventures home. Display your favorite travel photos in stunning clarity.",
-    price: 79,
+    price: 13.99,
+    originalPrice: 149,
   },
   {
     id: "museum-wrap",
     image: weddingCanvas,
     title: "Wedding Canvas",
     description: "Turn your special day into timeless wall art. Perfect for newlyweds and anniversaries.",
-    price: 79,
+    price: 15.99,
+    originalPrice: 159,
   },
   {
     id: "landscape-canvas",
     image: landscapeCanvas,
     title: "Landscape Canvas",
     description: "Breathtaking nature scenes printed on premium canvas. Bring the outdoors inside.",
-    price: 59,
+    price: 13.99,
+    originalPrice: 149,
   },
   {
     id: "baby-canvas",
     image: babyCanvas,
     title: "Baby Portrait Canvas",
     description: "Capture precious newborn moments forever with professional canvas printing.",
-    price: 49,
-  },
-  {
-    id: "city-canvas",
-    image: cityCanvas,
-    title: "City Skyline Split Canvas",
-    description: "Modern urban photography on multi-panel canvas sets for dramatic wall displays.",
-    price: 129,
-  },
-  {
-    id: "floral-canvas",
-    image: floralCanvas,
-    title: "Floral Art Canvas",
-    description: "Beautiful botanical prints that add elegance and color to any room.",
-    price: 59,
+    price: 12.99,
+    originalPrice: 145,
   },
 ];
 
@@ -245,11 +237,19 @@ const Index = () => {
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                     {product.description}
                   </p>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-sm text-muted-foreground">From</span>
-                    <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-                      ${product.price}
-                    </span>
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-lg line-through text-muted-foreground">
+                        ${product.originalPrice}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xs text-muted-foreground">If you order now:</span>
+                      <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                        ${product.price}
+                      </span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">+ shipping and handling</span>
                   </div>
                   <Link to={`/product/${product.id}`}>
                     <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
