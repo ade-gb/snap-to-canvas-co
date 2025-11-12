@@ -56,8 +56,13 @@ export const PromoPopup = () => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-2xl p-0 gap-0 border-0 bg-transparent overflow-hidden">
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      setIsOpen(open);
+      if (!open) {
+        localStorage.setItem("snap4canvas-promo-seen", "true");
+      }
+    }}>
+      <DialogContent hideClose className="max-w-2xl p-0 gap-0 border-0 bg-transparent overflow-hidden">
         <div className="relative bg-gradient-hero text-primary-foreground p-8 md:p-12 rounded-2xl shadow-soft">
           <button
             onClick={handleClose}
