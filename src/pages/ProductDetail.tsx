@@ -20,11 +20,10 @@ import canvasMockup from "@/assets/canvas-mockup.jpg";
 import workspaceCanvas from "@/assets/workspace-canvas.jpg";
 
 const sizes = [
-  { id: "8x10", label: '8" × 10"', price: 49 },
-  { id: "12x16", label: '12" × 16"', price: 69 },
-  { id: "16x20", label: '16" × 20"', price: 89 },
-  { id: "20x30", label: '20" × 30"', price: 119 },
-  { id: "24x36", label: '24" × 36"', price: 149 },
+  { id: "8x8", label: '8" × 8"', originalPrice: 145, price: 12.99 },
+  { id: "10x8", label: '10" × 8"', originalPrice: 149, price: 13.99 },
+  { id: "16x12", label: '16" × 12"', originalPrice: 159, price: 15.99 },
+  { id: "20x16", label: '20" × 16"', originalPrice: 169, price: 18.95 },
 ];
 
 const frames = [
@@ -195,7 +194,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
-  const [selectedSize, setSelectedSize] = useState("16x20");
+  const [selectedSize, setSelectedSize] = useState("16x12");
   const [selectedFrame, setSelectedFrame] = useState("none");
 
   const product = productData[id || "gallery-wrap"] || productData["gallery-wrap"];
@@ -257,20 +256,26 @@ const ProductDetail = () => {
             <Label className="text-xl font-semibold mb-4 block">
               Choose Your Size
             </Label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {sizes.map((size) => (
                 <label
                   key={size.id}
                   className="relative flex flex-col p-4 border-2 rounded-xl cursor-pointer hover:border-primary transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-soft"
                 >
                   <RadioGroup value={selectedSize} onValueChange={setSelectedSize}>
-                    <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center justify-between mb-2">
                       <RadioGroupItem value={size.id} id={size.id} className="sr-only" />
                       <span className="font-semibold text-lg">{size.label}</span>
                       <Check className="w-5 h-5 text-primary opacity-0 has-[:checked]:opacity-100 transition-opacity" />
                     </div>
                   </RadioGroup>
-                  <span className="text-2xl font-bold text-primary">${size.price}</span>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg line-through text-muted-foreground">${size.originalPrice}</span>
+                  </div>
+                  <div className="text-sm font-medium text-foreground mb-1">
+                    If you order now: <span className="text-2xl font-bold text-primary">${size.price}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">+ shipping and handling</span>
                 </label>
               ))}
             </div>
