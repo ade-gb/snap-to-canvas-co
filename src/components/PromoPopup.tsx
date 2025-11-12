@@ -58,10 +58,10 @@ export const PromoPopup = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="max-w-2xl p-0 gap-0 border-0 bg-transparent overflow-hidden">
-        <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white p-8 md:p-12 rounded-2xl">
+        <div className="relative bg-gradient-hero text-primary-foreground p-8 md:p-12 rounded-2xl shadow-soft">
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             aria-label="Close"
           >
             <X className="w-8 h-8" />
@@ -82,7 +82,7 @@ export const PromoPopup = () => {
               All Prints!
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 max-w-lg mx-auto">
+            <p className="text-lg md:text-xl text-primary-foreground/90 max-w-lg mx-auto">
               Transform your favorite moments into stunning keepsakes - and save 90% while you're at it! Sign up to save & create today.
             </p>
 
@@ -92,13 +92,13 @@ export const PromoPopup = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-14 bg-white/95 text-gray-900 placeholder:text-gray-500 text-lg border-0 focus-visible:ring-2 focus-visible:ring-white"
+                className="flex-1 h-14 bg-background text-foreground placeholder:text-muted-foreground text-lg border-0 focus-visible:ring-2 focus-visible:ring-primary-foreground"
                 required
               />
               <Button
                 type="submit"
                 size="lg"
-                className="h-14 px-8 bg-white text-blue-700 hover:bg-white/90 text-lg font-semibold whitespace-nowrap"
+                className="h-14 px-8 bg-background text-primary hover:bg-background/90 text-lg font-semibold whitespace-nowrap"
               >
                 Unlock 90% Off
               </Button>
