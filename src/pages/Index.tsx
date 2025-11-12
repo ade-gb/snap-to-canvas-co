@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { PromoPopup } from "@/components/PromoPopup";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Star, Check, TrendingUp, Shield, Heart, Package } from "lucide-react";
@@ -150,6 +151,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <PromoPopup />
       <Navbar />
       
       {/* Hero Section */}
