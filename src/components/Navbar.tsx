@@ -41,13 +41,13 @@ export const Navbar = () => {
   ];
 
   const shopDropdownItems = [
-    { name: "Canvas Prints", href: "/products" },
+    { name: "Canvas Prints", href: "/canvas-prints" },
     { name: "Metal Prints", href: "/metal-prints" },
-    { name: "Collages Canvas", href: "/products?type=collages" },
+    { name: "Collages Canvas", href: "/collages-canvas" },
     { name: "Photo Pillows", href: "/photo-pillows" },
     { name: "Photo Blankets", href: "/photo-blankets" },
     { name: "Pet Portraits", href: "/pet-portraits" },
-    { name: "Print Bundles", href: "/products?type=bundles" },
+    { name: "Print Bundles", href: "/print-bundles" },
     { name: "Word Art", href: "/word-art" },
     { name: "Kid Art", href: "/kid-art" },
     { name: "Gift Cards", href: "/products?type=gift-cards" },
