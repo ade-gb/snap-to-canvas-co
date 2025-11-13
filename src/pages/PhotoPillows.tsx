@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import canvasMockup from "@/assets/canvas-mockup.jpg";
 import pillowCollage from "@/assets/pillow-collage.jpg";
 import pillowBrushstroke from "@/assets/pillow-brushstroke.jpg";
 import pillowPets from "@/assets/pillow-pets.jpg";
@@ -19,7 +18,7 @@ const PhotoPillows = () => {
       description: "Perfect square pillow for single photos or collages",
       startingPrice: 24.99,
       originalPrice: 49.99,
-      image: canvasMockup,
+      image: pillowCollage,
       category: "square"
     },
     {
@@ -28,7 +27,7 @@ const PhotoPillows = () => {
       description: "Standard throw pillow size",
       startingPrice: 27.99,
       originalPrice: 54.99,
-      image: canvasMockup,
+      image: pillowBrushstroke,
       category: "square"
     },
     {
@@ -37,7 +36,7 @@ const PhotoPillows = () => {
       description: "Larger decorative pillow",
       startingPrice: 31.99,
       originalPrice: 59.99,
-      image: canvasMockup,
+      image: pillowPets,
       category: "square"
     },
     {
@@ -46,7 +45,7 @@ const PhotoPillows = () => {
       description: "Rectangular lumbar support pillow",
       startingPrice: 29.99,
       originalPrice: 56.99,
-      image: canvasMockup,
+      image: pillowArtistic,
       category: "lumbar"
     },
     {
@@ -55,7 +54,7 @@ const PhotoPillows = () => {
       description: "Compact decorative pillow",
       startingPrice: 22.99,
       originalPrice: 44.99,
-      image: canvasMockup,
+      image: pillowCollage,
       category: "square"
     },
   ];
