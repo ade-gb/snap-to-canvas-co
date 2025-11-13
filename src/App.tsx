@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Products from "./pages/Products";
 import MetalPrints from "./pages/MetalPrints";
 import PhotoPillows from "./pages/PhotoPillows";
+import PhotoBlankets from "./pages/PhotoBlankets";
 import ProductDetail from "./pages/ProductDetail";
 import Upload from "./pages/Upload";
 import Cart from "./pages/Cart";
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/metal-prints" element={<MetalPrints />} />
           <Route path="/photo-pillows" element={<PhotoPillows />} />
+          <Route path="/photo-blankets" element={<PhotoBlankets />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/cart" element={<Cart />} />
