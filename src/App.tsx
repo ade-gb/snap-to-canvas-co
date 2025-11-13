@@ -6,7 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
+import CanvasPrints from "./pages/CanvasPrints";
 import MetalPrints from "./pages/MetalPrints";
+import CollagesCanvas from "./pages/CollagesCanvas";
+import PrintBundles from "./pages/PrintBundles";
 import PhotoPillows from "./pages/PhotoPillows";
 import PhotoBlankets from "./pages/PhotoBlankets";
 import PetPortraits from "./pages/PetPortraits";
@@ -37,7 +40,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/canvas-prints" element={<CanvasPrints />} />
           <Route path="/metal-prints" element={<MetalPrints />} />
+          <Route path="/collages-canvas" element={<CollagesCanvas />} />
+          <Route path="/print-bundles" element={<PrintBundles />} />
           <Route path="/photo-pillows" element={<PhotoPillows />} />
           <Route path="/photo-blankets" element={<PhotoBlankets />} />
           <Route path="/pet-portraits" element={<PetPortraits />} />
