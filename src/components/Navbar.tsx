@@ -48,7 +48,7 @@ export const Navbar = () => {
     { name: "Photo Blankets", href: "/photo-blankets" },
     { name: "Pet Portraits", href: "/pet-portraits" },
     { name: "Print Bundles", href: "/products?type=bundles" },
-    { name: "Word Art", href: "/products?type=word-art" },
+    { name: "Word Art", href: "/word-art" },
     { name: "Kid Art", href: "/products?type=kid-art" },
     { name: "Gift Cards", href: "/products?type=gift-cards" },
   ];
