@@ -56,9 +56,9 @@ export const Navbar = () => {
   const mobileMenuItems = [
     { name: "Products", href: "/products", hasArrow: true },
     { name: "Gifts", href: "/gifts" },
-    { name: "Reviews", href: "/help#reviews" },
-    { name: "Contact us", href: "/help#contact" },
-    { name: "FAQ", href: "/help#faq" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Contact us", href: "/contact" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   const handleSignOut = async () => {
