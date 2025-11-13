@@ -13,6 +13,11 @@ import landscapeCanvas from "@/assets/landscape-canvas.jpg";
 import babyCanvas from "@/assets/baby-canvas.jpg";
 import cityCanvas from "@/assets/city-canvas.jpg";
 import floralCanvas from "@/assets/floral-canvas.jpg";
+import galleryWall1 from "@/assets/gallery-wall-1.jpg";
+import galleryWall2 from "@/assets/gallery-wall-2.jpg";
+import galleryWall3 from "@/assets/gallery-wall-3.jpg";
+import galleryWall4 from "@/assets/gallery-wall-4.jpg";
+import galleryWall5 from "@/assets/gallery-wall-5.jpg";
 
 const categories = [
   { id: "all", label: "All Products" },
@@ -239,6 +244,90 @@ const Products = () => {
             </Card>
           ))}
         </div>
+
+        {/* Display Inspiration Section */}
+        <section className="mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-3">Display Inspiration</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              See how our customers showcase their canvas prints in real homes
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img
+                  src={galleryWall1}
+                  alt="Multi-canvas family wall display"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 border-t border-border">
+                <h3 className="font-semibold mb-1">Multi-Canvas Gallery</h3>
+                <p className="text-sm text-muted-foreground">Perfect for family photo collections</p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img
+                  src={galleryWall2}
+                  alt="Three canvas triptych display"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 border-t border-border">
+                <h3 className="font-semibold mb-1">Triptych Layout</h3>
+                <p className="text-sm text-muted-foreground">Modern three-panel arrangement</p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img
+                  src={galleryWall3}
+                  alt="Gallery wall with black frames"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 border-t border-border">
+                <h3 className="font-semibold mb-1">Gallery Wall</h3>
+                <p className="text-sm text-muted-foreground">Asymmetric framed arrangement</p>
+              </div>
+            </Card>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={galleryWall4}
+                  alt="Multi-panel split canvas wedding photos"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 border-t border-border">
+                <h3 className="font-semibold mb-1">Split Panel Canvas</h3>
+                <p className="text-sm text-muted-foreground">Perfect for wedding photos and special occasions</p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={galleryWall5}
+                  alt="White framed gallery wall"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 border-t border-border">
+                <h3 className="font-semibold mb-1">Heart-Shaped Gallery</h3>
+                <p className="text-sm text-muted-foreground">Creative arrangement with multiple sizes</p>
+              </div>
+            </Card>
+          </div>
+        </section>
 
         {/* Why Choose Us Section */}
         <section className="bg-muted/30 rounded-lg p-8 md:p-12">
