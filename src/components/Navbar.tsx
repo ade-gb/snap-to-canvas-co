@@ -45,7 +45,7 @@ export const Navbar = () => {
     { name: "Metal Prints", href: "/metal-prints" },
     { name: "Collages Canvas", href: "/products?type=collages" },
     { name: "Photo Pillows", href: "/photo-pillows" },
-    { name: "Photo Blankets", href: "/products?type=blankets" },
+    { name: "Photo Blankets", href: "/photo-blankets" },
     { name: "Pet Portraits", href: "/products?type=pet-portraits" },
     { name: "Print Bundles", href: "/products?type=bundles" },
     { name: "Word Art", href: "/products?type=word-art" },
