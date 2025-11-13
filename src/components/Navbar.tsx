@@ -41,9 +41,9 @@ export const Navbar = () => {
   ];
 
   const shopDropdownItems = [
-    { name: "Canvas Prints", href: "/products?type=canvas" },
+    { name: "Canvas Prints", href: "/products" },
+    { name: "Metal Prints", href: "/metal-prints" },
     { name: "Collages Canvas", href: "/products?type=collages" },
-    { name: "Metal Prints", href: "/products?type=metal" },
     { name: "Photo Pillows", href: "/products?type=pillows" },
     { name: "Photo Blankets", href: "/products?type=blankets" },
     { name: "Pet Portraits", href: "/products?type=pet-portraits" },
