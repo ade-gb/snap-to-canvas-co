@@ -49,7 +49,7 @@ export const Navbar = () => {
     { name: "Pet Portraits", href: "/pet-portraits" },
     { name: "Print Bundles", href: "/products?type=bundles" },
     { name: "Word Art", href: "/word-art" },
-    { name: "Kid Art", href: "/products?type=kid-art" },
+    { name: "Kid Art", href: "/kid-art" },
     { name: "Gift Cards", href: "/products?type=gift-cards" },
   ];
 
