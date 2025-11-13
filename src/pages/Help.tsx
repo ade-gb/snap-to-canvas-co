@@ -123,52 +123,72 @@ const Help = () => {
           </p>
         </div>
 
-        {/* Contact Methods */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {contactMethods.map((method) => {
-            const Icon = method.icon;
-            return (
-              <Card key={method.title} className="hover:shadow-lg transition-shadow">
-                <CardHeader className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-14 h-14 rounded-full bg-primary-light flex items-center justify-center">
-                      <Icon className={`w-7 h-7 ${method.color}`} />
+        {/* Contact Methods - Modern Split Design */}
+        <div className="mb-16 bg-gradient-hero rounded-3xl p-8 md:p-12 shadow-elegant">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-primary-foreground mb-3">Get in Touch</h2>
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
+              Choose your preferred way to reach our support team
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {contactMethods.map((method, index) => {
+              const Icon = method.icon;
+              return (
+                <div 
+                  key={method.title} 
+                  className="bg-background/95 backdrop-blur-sm rounded-2xl p-6 hover:bg-background transition-all hover:scale-105 hover:shadow-xl"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-4">
+                      <Icon className="w-8 h-8 text-primary" />
                     </div>
+                    <h3 className="text-lg font-semibold mb-2">{method.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4">{method.description}</p>
+                    <Button variant="default" className="w-full mt-auto">{method.action}</Button>
                   </div>
-                  <CardTitle className="text-lg">{method.title}</CardTitle>
-                  <CardDescription>{method.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button className="w-full">{method.action}</Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+        {/* FAQ Section - Tabbed Layout */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <HelpCircle className="w-5 h-5 text-primary" />
+              </div>
+            </div>
+            <h2 className="text-3xl font-bold mb-3">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Quick answers to questions you may have
+            </p>
+          </div>
           
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {faqCategories.map((category) => {
               const Icon = category.icon;
               return (
-                <Card key={category.title}>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Icon className="w-5 h-5 text-primary" />
+                <Card key={category.title} className="border-2 hover:border-primary/50 transition-colors">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
                       {category.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="pt-6">
                     <Accordion type="single" collapsible className="w-full">
                       {category.faqs.map((faq, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                          <AccordionTrigger className="text-left">
+                        <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-0">
+                          <AccordionTrigger className="text-left hover:text-primary">
                             {faq.question}
                           </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground">
+                          <AccordionContent className="text-muted-foreground leading-relaxed">
                             {faq.answer}
                           </AccordionContent>
                         </AccordionItem>
@@ -365,19 +385,62 @@ const Help = () => {
           </div>
         </div>
 
-        {/* Community Gallery */}
-        <Card className="mb-12 bg-muted border-0">
-          <CardContent className="p-8">
-            <div className="text-center mb-8">
-              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="text-3xl font-bold mb-3">Customer Gallery</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Get inspired by beautiful canvas prints created by our customers
-              </p>
+        {/* Customer Gallery - Masonry Style with Reviews */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Users className="w-10 h-10 text-primary" />
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <h2 className="text-3xl font-bold mb-3">Customer Love & Creations</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              See what our customers are saying and creating with their canvas prints
+            </p>
+          </div>
+          
+          {/* Featured Reviews */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {[
+              { name: "Sarah M.", rating: 5, text: "Absolutely stunning quality! The colors are vibrant and the canvas feels premium. Will definitely order again!", image: 1 },
+              { name: "James P.", rating: 5, text: "Fast shipping and beautiful results. Turned my vacation photos into amazing wall art!", image: 2 },
+              { name: "Emily R.", rating: 5, text: "Perfect gift for my parents' anniversary. They loved it! The frame quality is exceptional.", image: 3 }
+            ].map((review, i) => (
+              <div key={i} className="bg-card rounded-2xl p-6 shadow-soft hover:shadow-elegant transition-shadow border border-border/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-hero flex items-center justify-center text-primary-foreground font-semibold">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold">{review.name}</p>
+                    <div className="flex gap-0.5">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <span key={i} className="text-yellow-500">★</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground italic mb-4">"{review.text}"</p>
+                <div className="aspect-square rounded-xl overflow-hidden bg-muted">
+                  <img
+                    src="/placeholder.svg"
+                    alt={`${review.name}'s canvas`}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="bg-muted/30 rounded-3xl p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={i} className="aspect-square bg-card rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                <div 
+                  key={i} 
+                  className="aspect-square rounded-xl overflow-hidden hover:scale-[1.02] transition-all cursor-pointer shadow-md hover:shadow-xl"
+                  style={{ 
+                    gridRow: i === 1 || i === 4 ? 'span 2' : 'span 1',
+                  }}
+                >
                   <img
                     src="/placeholder.svg"
                     alt={`Customer canvas ${i}`}
@@ -387,10 +450,10 @@ const Help = () => {
               ))}
             </div>
             <div className="text-center">
-              <Button size="lg">View Full Gallery</Button>
+              <Button size="lg" variant="default">View Full Gallery</Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Still Need Help */}
         <Card className="bg-gradient-hero text-primary-foreground border-0">
