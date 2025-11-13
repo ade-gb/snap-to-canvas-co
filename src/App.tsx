@@ -11,6 +11,7 @@ import PhotoPillows from "./pages/PhotoPillows";
 import PhotoBlankets from "./pages/PhotoBlankets";
 import PetPortraits from "./pages/PetPortraits";
 import WordArt from "./pages/WordArt";
+import KidArt from "./pages/KidArt";
 import ProductDetail from "./pages/ProductDetail";
 import Upload from "./pages/Upload";
 import Cart from "./pages/Cart";
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/photo-blankets" element={<PhotoBlankets />} />
           <Route path="/pet-portraits" element={<PetPortraits />} />
           <Route path="/word-art" element={<WordArt />} />
+          <Route path="/kid-art" element={<KidArt />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/cart" element={<Cart />} />
