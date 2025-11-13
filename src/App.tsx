@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
+import MetalPrints from "./pages/MetalPrints";
 import ProductDetail from "./pages/ProductDetail";
 import Upload from "./pages/Upload";
 import Cart from "./pages/Cart";
@@ -31,6 +32,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/metal-prints" element={<MetalPrints />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/cart" element={<Cart />} />

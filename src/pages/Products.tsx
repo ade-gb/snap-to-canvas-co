@@ -248,82 +248,124 @@ const Products = () => {
         {/* Display Inspiration Section */}
         <section className="mb-16">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3">Display Inspiration</h2>
+            <h2 className="text-3xl font-bold mb-3">Canvas Wall Inspiration</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              See how our customers showcase their canvas prints in real homes
+              See how our customers create stunning gallery walls with canvas prints
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
-              <div className="aspect-[4/5] overflow-hidden">
+          {/* Large Featured Display */}
+          <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all mb-8">
+            <div className="grid md:grid-cols-2 gap-0">
+              <div className="aspect-square overflow-hidden">
                 <img
                   src={galleryWall1}
                   alt="Multi-canvas family wall display"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4 border-t border-border">
-                <h3 className="font-semibold mb-1">Multi-Canvas Gallery</h3>
-                <p className="text-sm text-muted-foreground">Perfect for family photo collections</p>
+              <div className="p-8 flex flex-col justify-center bg-muted/20">
+                <Badge className="w-fit mb-4">Featured Layout</Badge>
+                <h3 className="text-2xl font-bold mb-3">Multi-Canvas Gallery Wall</h3>
+                <p className="text-muted-foreground mb-6">
+                  Create a stunning focal point with a collection of canvas prints in varying sizes. 
+                  This asymmetric layout adds visual interest and personality to any room. Perfect for 
+                  displaying family photos, travel memories, or curated art collections.
+                </p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <span>Mix different canvas sizes for dynamic composition</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <span>Maintain consistent spacing between frames</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <span>Works best on large, empty walls</span>
+                  </div>
+                </div>
               </div>
-            </Card>
+            </div>
+          </Card>
 
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-video overflow-hidden">
                 <img
                   src={galleryWall2}
                   alt="Three canvas triptych display"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4 border-t border-border">
-                <h3 className="font-semibold mb-1">Triptych Layout</h3>
-                <p className="text-sm text-muted-foreground">Modern three-panel arrangement</p>
+              <div className="p-6 border-t border-border">
+                <Badge variant="secondary" className="mb-2">Modern</Badge>
+                <h3 className="text-xl font-semibold mb-2">Triptych Canvas Layout</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Three equal-sized canvases create a modern, balanced display. Ideal for panoramic 
+                  photos or telling a visual story across three panels.
+                </p>
+                <div className="text-xs text-muted-foreground">Recommended: 3x 16"x20" canvases</div>
               </div>
             </Card>
 
             <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-video overflow-hidden">
                 <img
                   src={galleryWall3}
                   alt="Gallery wall with black frames"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4 border-t border-border">
-                <h3 className="font-semibold mb-1">Gallery Wall</h3>
-                <p className="text-sm text-muted-foreground">Asymmetric framed arrangement</p>
+              <div className="p-6 border-t border-border">
+                <Badge variant="secondary" className="mb-2">Classic</Badge>
+                <h3 className="text-xl font-semibold mb-2">Salon-Style Gallery</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  An elegant asymmetric arrangement that combines different orientations and sizes. 
+                  Creates an authentic art gallery feel in your home.
+                </p>
+                <div className="text-xs text-muted-foreground">Mix of portrait & landscape canvases</div>
               </div>
             </Card>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={galleryWall4}
                   alt="Multi-panel split canvas wedding photos"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4 border-t border-border">
-                <h3 className="font-semibold mb-1">Split Panel Canvas</h3>
-                <p className="text-sm text-muted-foreground">Perfect for wedding photos and special occasions</p>
+              <div className="p-6 border-t border-border">
+                <Badge variant="secondary" className="mb-2">Dramatic</Badge>
+                <h3 className="text-xl font-semibold mb-2">Split Panel Canvas</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  One image divided across multiple canvases creates incredible visual impact. 
+                  Perfect for landscape photos, cityscapes, or special occasions like weddings.
+                </p>
+                <div className="text-xs text-muted-foreground">Single image split across 3-5 panels</div>
               </div>
             </Card>
 
             <Card className="overflow-hidden group cursor-pointer hover:shadow-elegant transition-all">
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={galleryWall5}
                   alt="White framed gallery wall"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4 border-t border-border">
-                <h3 className="font-semibold mb-1">Heart-Shaped Gallery</h3>
-                <p className="text-sm text-muted-foreground">Creative arrangement with multiple sizes</p>
+              <div className="p-6 border-t border-border">
+                <Badge variant="secondary" className="mb-2">Romantic</Badge>
+                <h3 className="text-xl font-semibold mb-2">Heart-Shaped Gallery</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  A creative arrangement forming a heart shape with various canvas sizes. 
+                  Adds a personal and romantic touch to bedrooms or family spaces.
+                </p>
+                <div className="text-xs text-muted-foreground">Requires 7-12 canvases in mixed sizes</div>
               </div>
             </Card>
           </div>
