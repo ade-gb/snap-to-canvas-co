@@ -150,12 +150,97 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* Customer Gallery */}
+        {/* Display Ideas Gallery */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-3">Display Ideas & Inspiration</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              See how our customers transform their spaces with creative canvas arrangements
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Multi-Canvas Family Wall */}
+            <div className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] bg-muted/50 relative">
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="grid grid-cols-3 gap-2 w-full h-full">
+                    <div className="bg-background/80 rounded-lg shadow-md"></div>
+                    <div className="bg-background/80 rounded-lg shadow-md col-span-2 row-span-2"></div>
+                    <div className="bg-background/80 rounded-lg shadow-md"></div>
+                    <div className="bg-background/80 rounded-lg shadow-md col-span-2"></div>
+                    <div className="bg-background/80 rounded-lg shadow-md"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 border-t border-border">
+                <h3 className="font-semibold text-lg mb-2">Multi-Canvas Gallery Wall</h3>
+                <p className="text-sm text-muted-foreground">Mix different sizes to create a stunning family photo display</p>
+              </div>
+            </div>
+
+            {/* Triptych Layout */}
+            <div className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] bg-muted/50 relative">
+                <div className="absolute inset-0 flex items-center justify-center p-8 gap-3">
+                  <div className="flex-1 h-3/4 bg-background/80 rounded-lg shadow-md"></div>
+                  <div className="flex-1 h-full bg-background/80 rounded-lg shadow-md"></div>
+                  <div className="flex-1 h-3/4 bg-background/80 rounded-lg shadow-md"></div>
+                </div>
+              </div>
+              <div className="p-6 border-t border-border">
+                <h3 className="font-semibold text-lg mb-2">Triptych Display</h3>
+                <p className="text-sm text-muted-foreground">Three vertical canvases for a modern, sophisticated look</p>
+              </div>
+            </div>
+
+            {/* Framed Gallery */}
+            <div className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] bg-muted/50 relative">
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="grid grid-cols-4 grid-rows-3 gap-2 w-full h-full">
+                    <div className="bg-background/80 rounded-md shadow-md"></div>
+                    <div className="bg-background/80 rounded-md shadow-md col-span-2 row-span-2"></div>
+                    <div className="bg-background/80 rounded-md shadow-md"></div>
+                    <div className="bg-background/80 rounded-md shadow-md row-span-2"></div>
+                    <div className="bg-background/80 rounded-md shadow-md"></div>
+                    <div className="bg-background/80 rounded-md shadow-md col-span-2"></div>
+                    <div className="bg-background/80 rounded-md shadow-md"></div>
+                    <div className="bg-background/80 rounded-md shadow-md"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 border-t border-border">
+                <h3 className="font-semibold text-lg mb-2">Artistic Gallery Wall</h3>
+                <p className="text-sm text-muted-foreground">Asymmetric arrangement with varying frame sizes</p>
+              </div>
+            </div>
+
+            {/* Split Canvas */}
+            <div className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elegant transition-all">
+              <div className="aspect-[4/5] bg-muted/50 relative">
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="relative w-full h-3/4">
+                    <div className="absolute left-0 w-[45%] h-full bg-background/80 rounded-lg shadow-xl" style={{ transform: 'translateZ(20px)' }}></div>
+                    <div className="absolute left-[25%] w-[50%] h-full bg-background/80 rounded-lg shadow-xl" style={{ transform: 'translateZ(40px) scale(1.1)' }}></div>
+                    <div className="absolute right-0 w-[45%] h-full bg-background/80 rounded-lg shadow-xl" style={{ transform: 'translateZ(20px)' }}></div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 border-t border-border">
+                <h3 className="font-semibold text-lg mb-2">Multi-Panel Split Canvas</h3>
+                <p className="text-sm text-muted-foreground">Single image split across multiple canvases for dramatic effect</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Real Customer Photos */}
         <div className="bg-muted/30 rounded-3xl p-8 mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-3">Customer Gallery</h2>
+            <h2 className="text-3xl font-bold mb-3">Real Customer Photos</h2>
             <p className="text-muted-foreground">
-              Beautiful canvas prints created by our customers
+              See the quality and beauty of our canvas prints in real homes
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
