@@ -268,35 +268,6 @@ const Gifts = () => {
           </Tabs>
         </div>
 
-        {/* Popular Gift Ideas */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Popular Gift Ideas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {giftIdeas.map((gift) => (
-              <Card key={gift.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Badge variant="secondary" className="w-fit mb-2">
-                    {gift.badge}
-                  </Badge>
-                  <img
-                    src={gift.image}
-                    alt={gift.title}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <CardTitle className="text-lg">{gift.title}</CardTitle>
-                  <CardDescription>{gift.description}</CardDescription>
-                </CardHeader>
-                <CardFooter className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-primary">{gift.price}</span>
-                  <Link to="/upload">
-                    <Button>Create Now</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Gift Services */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Gift Services</h2>
