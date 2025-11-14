@@ -187,7 +187,7 @@ const Gifts = () => {
         {/* Occasions Grid */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Shop by Occasion</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {occasions.map((occasion) => {
               const Icon = occasion.icon;
               return (
@@ -300,7 +300,7 @@ const Gifts = () => {
         {/* Gift Services */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Gift Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {giftServices.map((service, index) => {
               const Icon = service.icon;
               return (
@@ -323,40 +323,10 @@ const Gifts = () => {
           </div>
         </div>
 
-        {/* Customer Stories */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Gift Stories from Our Customers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {customerStories.map((story, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <img
-                    src={story.image}
-                    alt={story.name}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(story.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <CardTitle className="text-lg">{story.name}</CardTitle>
-                  <CardDescription>{story.occasion}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground italic">
-                    "{story.quote}"
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Why Choose Us */}
         <div className="bg-card rounded-lg p-8 border">
           <h2 className="text-2xl font-bold text-center mb-8">Why Snap4Canvas Makes the Perfect Gift</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="text-center">
               <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-6 h-6 text-primary" />
