@@ -129,7 +129,7 @@ export const Navbar = () => {
           </div>
 
           {/* Right Icons */}
-          <div className="flex items-center gap-12 lg:gap-4">
+          <div className="flex items-center gap-[25px] lg:gap-4">
             <Button
               variant="ghost"
               size="icon"
