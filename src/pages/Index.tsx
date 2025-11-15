@@ -27,8 +27,8 @@ const howItWorks = [
   },
   {
     step: 3,
-    title: "We Print & Ship",
-    description: "Professional printing with free shipping",
+    title: "We Print & Ship Free",
+    description: "Printed in USA with free shipping nationwide",
   },
   {
     step: 4,
@@ -128,8 +128,8 @@ const whyChooseUs = [
   },
   {
     icon: Package,
-    title: "Free Shipping",
-    description: "Fast, free delivery on all orders",
+    title: "Free USA Shipping",
+    description: "Fast, free delivery to all 50 states",
   },
   {
     icon: Heart,
@@ -157,10 +157,13 @@ const Index = () => {
         <div className="absolute inset-0 flex items-end justify-center pb-8 md:pb-16">
           <div className="text-center text-white px-4 max-w-3xl animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-              Transform Your Memories
+              Transform Your Photos Into Museum-Quality Canvas Art
             </h1>
-            <p className="text-lg md:text-xl mb-6 drop-shadow-md">
-              Turn your favorite photos into stunning canvas art
+            <p className="text-lg md:text-xl mb-2 drop-shadow-md">
+              Premium custom canvas prints made in the USA
+            </p>
+            <p className="text-base md:text-lg mb-6 drop-shadow-md">
+              Free shipping nationwide • 100% satisfaction guarantee
             </p>
           </div>
         </div>

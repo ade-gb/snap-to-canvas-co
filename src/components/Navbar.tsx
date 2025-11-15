@@ -36,6 +36,7 @@ export const Navbar = () => {
     { name: "Shop Canvas", href: "/products", hasDropdown: true },
     { name: "Deals", href: "/deals" },
     { name: "Gifts", href: "/gifts" },
+    { name: "Shipping", href: "/shipping" },
     { name: "Track Order", href: "/track" },
     { name: "Help", href: "/help" },
   ];
