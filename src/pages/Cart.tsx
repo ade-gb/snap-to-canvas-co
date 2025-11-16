@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleApplyPromo = () => {
     // Simple promo code logic - in production, validate with backend
@@ -23,6 +25,32 @@ const Cart = () => {
       toast.success("Promo code applied! 20% off");
     } else {
       toast.error("Invalid promo code");
+    }
+  };
+
+  const handlePayPalCheckout = async () => {
+    if (items.length === 0) return;
+    
+    setIsProcessing(true);
+    try {
+      console.log('Creating PayPal order for amount:', total);
+      
+      const { data, error } = await supabase.functions.invoke('create-paypal-order', {
+        body: { amount: total, currency: 'USD' }
+      });
+
+      if (error) throw error;
+      if (!data?.orderId) throw new Error('No order ID returned');
+
+      // Load PayPal SDK and redirect to approval
+      const approveUrl = `https://www.paypal.com/checkoutnow?token=${data.orderId}`;
+      window.location.href = approveUrl;
+      
+    } catch (error) {
+      console.error('PayPal checkout error:', error);
+      toast.error('Failed to initiate PayPal checkout. Please try again.');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -188,8 +216,14 @@ const Cart = () => {
                     </div>
                   </div>
 
-                  <Button variant="hero" size="lg" className="w-full mb-3">
-                    Proceed to Checkout
+                  <Button 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full mb-3"
+                    onClick={handlePayPalCheckout}
+                    disabled={isProcessing}
+                  >
+                    {isProcessing ? 'Processing...' : 'Pay with PayPal'}
                   </Button>
                   
                   <Link to="/products">
