@@ -17,7 +17,7 @@ serve(async (req) => {
 
     const PAYPAL_CLIENT_ID = Deno.env.get('PAYPAL_CLIENT_ID');
     const PAYPAL_SECRET_KEY = Deno.env.get('PAYPAL_SECRET_KEY');
-    const PAYPAL_API = 'https://api-m.paypal.com'; // Use https://api-m.sandbox.paypal.com for testing
+    const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; // Use sandbox for testing
 
     if (!PAYPAL_CLIENT_ID || !PAYPAL_SECRET_KEY) {
       throw new Error('PayPal credentials not configured');
