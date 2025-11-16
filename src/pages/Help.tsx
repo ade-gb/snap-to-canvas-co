@@ -10,7 +10,7 @@ const Help = () => {
     {
       icon: Mail,
       title: "Email Support",
-      description: "support@snap4canvas.com",
+      description: "customersolution@snap4canvas.com",
       action: "Send Email",
       color: "text-blue-500"
     },
@@ -24,7 +24,7 @@ const Help = () => {
     {
       icon: Phone,
       title: "Phone Support",
-      description: "1-800-CANVAS-4U",
+      description: "+1 669-246-2503",
       action: "Call Now",
       color: "text-purple-500"
     }
