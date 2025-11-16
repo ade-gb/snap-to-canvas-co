@@ -49,9 +49,9 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Support",
-      description: "support@snap4canvas.com",
+      description: "customersolution@snap4canvas.com",
       action: "Send Email",
-      href: "mailto:support@snap4canvas.com"
+      href: "mailto:customersolution@snap4canvas.com"
     },
     {
       icon: MessageCircle,
@@ -63,9 +63,9 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone Support",
-      description: "1-800-CANVAS-4U",
+      description: "+1 669-246-2503",
       action: "Call Now",
-      href: "tel:1-800-226-8274"
+      href: "tel:+16692462503"
     }
   ];
 
