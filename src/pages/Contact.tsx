@@ -4,6 +4,7 @@ import { Mail, MessageCircle, Phone, MapPin, Clock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { SEO } from "@/components/SEO";
 import {
   Form,
   FormControl,
@@ -71,6 +72,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <SEO 
+        title="Contact Us - Customer Support"
+        description="Get in touch with Snap4Canvas customer support. Email us at customersolution@snap4canvas.com or call +1 669-246-2503. We're here to help!"
+        keywords="contact Snap4Canvas, customer support, canvas print help"
+      />
       <Navbar />
       
       <main className="container mx-auto px-4 py-12 max-w-6xl">

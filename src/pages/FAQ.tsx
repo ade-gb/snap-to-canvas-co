@@ -2,6 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Package, CreditCard, Ruler, Shield } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { createFAQSchema } from "@/utils/schemas";
 
 const FAQ = () => {
   const faqCategories = [
@@ -95,8 +97,17 @@ const FAQ = () => {
     }
   ];
 
+  // Flatten all FAQs for schema
+  const allFAQs = faqCategories.flatMap(category => category.faqs);
+
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <SEO 
+        title="FAQ - Frequently Asked Questions"
+        description="Quick answers to questions about custom canvas prints, shipping, quality, returns, and more. Get help with your Snap4Canvas order."
+        keywords="canvas print FAQ, custom canvas questions, shipping info, canvas quality, return policy"
+        schema={createFAQSchema(allFAQs)}
+      />
       <Navbar />
       
       <main className="container mx-auto px-4 py-12 max-w-6xl">

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { Clock, Star, Gift, Percent, TrendingUp, Users, Mail, Tag } from "lucide-react";
 import { useState } from "react";
+import { SEO } from "@/components/SEO";
 
 const Deals = () => {
   const [email, setEmail] = useState("");
@@ -83,6 +84,11 @@ const Deals = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <SEO 
+        title="Deals & Promotions - Save on Canvas Prints"
+        description="Exclusive deals on custom canvas prints! Save up to 50% on premium photo canvas. Limited time offers with free shipping. Shop flash sales now!"
+        keywords="canvas print deals, photo canvas sale, custom canvas discount, canvas print promo"
+      />
       <Navbar />
       
       <main className="container mx-auto px-4 py-12">

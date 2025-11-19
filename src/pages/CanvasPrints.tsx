@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Star, Filter } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { createCollectionSchema, createBreadcrumbSchema } from "@/utils/schemas";
 import familyCanvas from "@/assets/family-canvas.jpg";
 import petCanvas from "@/assets/pet-canvas.jpg";
 import sunsetCanvas from "@/assets/sunset-canvas.jpg";
@@ -147,6 +149,12 @@ const CanvasPrints = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Custom Canvas Prints - Museum Quality"
+        description="Premium custom canvas prints from $12.99. Gallery-wrapped, archival-quality printing with free shipping. Transform your photos into stunning wall art."
+        keywords="custom canvas prints, museum quality canvas, gallery wrap canvas, photo to canvas"
+        schema={createCollectionSchema(allProducts)}
+      />
       <Navbar />
       
       {/* Hero Section */}

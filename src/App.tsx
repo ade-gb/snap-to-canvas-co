@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import CanvasPrints from "./pages/CanvasPrints";
@@ -32,11 +33,12 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <CartProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<Products />} />
@@ -67,6 +69,7 @@ const App = () => (
       </TooltipProvider>
     </CartProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
