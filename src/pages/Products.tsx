@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Star, Filter } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { createCollectionSchema, createBreadcrumbSchema } from "@/utils/schemas";
 import familyCanvas from "@/assets/family-canvas.jpg";
 import petCanvas from "@/assets/pet-canvas.jpg";
 import sunsetCanvas from "@/assets/sunset-canvas.jpg";
@@ -135,8 +137,19 @@ const Products = () => {
     ? allProducts 
     : allProducts.filter(p => p.category === selectedCategory);
 
+  const breadcrumbs = [
+    { name: "Home", url: "/" },
+    { name: "Products", url: "/products" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Canvas Print Products & Collections"
+        description="Browse our collection of premium custom canvas prints. Family portraits, pet canvases, wedding memories, travel photos, and more. Starting at $12.99 with free shipping."
+        keywords="canvas print collection, family canvas, pet portraits, wedding canvas, travel prints"
+        schema={createCollectionSchema(allProducts)}
+      />
       <Navbar />
       
       {/* Hero Section */}

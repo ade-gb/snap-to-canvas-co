@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Star, Check, TrendingUp, Shield, Heart, Package } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { SEO } from "@/components/SEO";
+import { organizationSchema } from "@/utils/schemas";
 import heroImage from "@/assets/hero-image.jpg";
 import familyCanvas from "@/assets/family-canvas.jpg";
 import petCanvas from "@/assets/pet-canvas.jpg";
@@ -143,6 +145,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Custom Canvas Prints | Free Shipping in USA"
+        description="Transform your photos into museum-quality canvas prints. Premium custom canvas art printed in the USA with free shipping. Same-day printing, 100% satisfaction guarantee."
+        keywords="custom canvas prints USA, photo canvas printing, personalized canvas art, canvas prints free shipping, custom wall art USA"
+        schema={organizationSchema}
+      />
       <PromoPopup />
       <Navbar />
       
