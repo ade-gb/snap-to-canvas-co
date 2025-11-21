@@ -116,7 +116,13 @@ const Contact = () => {
                     <Button 
                       variant="default" 
                       className="w-full mt-auto"
-                      onClick={() => window.location.href = method.href}
+                      onClick={() => {
+                        if (method.href === "#") {
+                          toast.info("Live chat is currently offline. Please contact us via email or phone!");
+                        } else {
+                          window.location.href = method.href;
+                        }
+                      }}
                     >
                       {method.action}
                     </Button>
