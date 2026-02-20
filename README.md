@@ -165,14 +165,15 @@ Here are the main dependencies:
 Interested in improving **Snap to Canvas Co**? Here’s how:
 
 1. Fork the repository
-2. Create a new feature branch
+2. adding all nwe product for better use.
+3. Create a new feature branch
 
    ```sh
    git checkout -b feature-name
    ```
-3. Commit your changes
-4. Push to your branch
-5. Open a Pull Request
+4. Commit your changes
+5. Push to your branch
+6. Open a Pull Request
 
 > Contributions are welcome — UI improvements, features, bugs, docs, anything!
 
