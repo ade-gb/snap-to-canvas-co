@@ -389,6 +389,9 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">
               © 2025 Snap4Canvas. All rights reserved.
             </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Created by moyodev
+            </p>
           </div>
         </div>
       </footer>
