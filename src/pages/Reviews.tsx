@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Users, Star, Upload } from "lucide-react";
 
@@ -279,6 +280,7 @@ const Reviews = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
