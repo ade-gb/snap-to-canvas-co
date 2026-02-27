@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -320,6 +321,7 @@ const WordArt = () => {
           <Button size="lg" className="text-lg px-12">Design Now</Button>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, MessageCircle, Phone, MapPin, Clock } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -267,6 +268,7 @@ const Contact = () => {
           </Form>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

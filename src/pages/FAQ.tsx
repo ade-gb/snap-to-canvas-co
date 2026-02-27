@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Package, CreditCard, Ruler, Shield } from "lucide-react";
@@ -220,6 +221,7 @@ const FAQ = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

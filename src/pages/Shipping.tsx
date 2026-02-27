@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Check, Package, Truck, MapPin, Clock } from "lucide-react";
 
@@ -236,6 +237,7 @@ const Shipping = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

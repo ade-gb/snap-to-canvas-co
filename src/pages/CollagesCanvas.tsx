@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -269,6 +270,7 @@ const CollagesCanvas = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
