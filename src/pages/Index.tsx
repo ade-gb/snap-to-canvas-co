@@ -390,7 +390,7 @@ const Index = () => {
               © 2025 Snap4Canvas. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground mt-2">
-              Created by moyodev
+              Created by <a href="https://linktr.ee/moyo_dev?utm_source=linktree_profile_share&ltsid=2e5a1d83-f7a5-4029-a2f8-ec04d5f430e9" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">moyodev</a>
             </p>
           </div>
         </div>
